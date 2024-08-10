@@ -8,6 +8,8 @@ require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'
 require 'waml_to_rails/sources/migrations/definition'
 
+require 'waml_to_rails/rails_boilerplate/builder'
+
 module WamlToRails
   class << self
     def generate(waml_json)
