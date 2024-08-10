@@ -30,7 +30,7 @@ module WamlToRails
         end
 
         def table_name
-          @table_definition['table']
+          @table_definition.table
         end
       end
     end

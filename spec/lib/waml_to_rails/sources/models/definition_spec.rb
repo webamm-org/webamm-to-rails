@@ -3,11 +3,8 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Definition do
   describe '#render' do
     it 'returns empty class definition' do
-      table_definition = {
-        'table' => 'users',
-        'columns' => [],
-        'options' => {}
-      }
+      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
 
       expected_definition = <<~RUBY
         class User < ApplicationRecord
@@ -15,16 +12,58 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
       RUBY
 
       expect(
-        described_class.new(table_definition: table_definition, waml_definition: { 'associations' => [] }).render
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
       ).to eq(expected_definition)
     end
 
     it 'returns class definition with base associations' do
-      table_definition = {
-        'table' => 'users',
-        'columns' => [],
-        'options' => {}
-      }
+      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      waml_definition = WamlToRails::Definition.new(database: {
+        relationships: [
+          {
+            source: 'users',
+            type: 'belongs_to',
+            destination: 'companies',
+            required: true
+          },
+          {
+            source: 'companies',
+            type: 'has_many',
+            destination: 'users',
+            required: true
+          },
+          {
+            source: 'users',
+            type: 'has_many',
+            destination: 'tasks',
+            required: true
+          },
+          {
+            source: 'tasks',
+            type: 'belongs_to',
+            destination: 'users',
+            required: true
+          },
+          {
+            source: 'users',
+            type: 'has_many_and_belongs_to_many',
+            destination: 'tags',
+            options: { habtm_table: 'companies_tags' },
+            required: true
+          },
+          {
+            source: 'tags',
+            type: 'has_many_and_belongs_to_many',
+            destination: 'users',
+            options: { habtm_table: 'companies_tags' },
+            required: true
+          }
+        ],
+        schema: [
+          { table: 'companies_tags', columns: [], indices: [] }
+        ],
+        engine: 'postgresql'
+      })
 
       expected_definition = <<~RUBY
         class User < ApplicationRecord
@@ -33,20 +72,6 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
           has_and_belongs_to_many :tags
         end
       RUBY
-
-      waml_definition = {
-        'associations' => [
-          { 'source' => 'users', 'type' => 'belongs_to', 'destination' => 'companies', 'required' => true },
-          { 'source' => 'companies', 'type' => 'has_many', 'destination' => 'users' },
-          { 'source' => 'users', 'type' => 'has_many', 'destination' => 'tasks' },
-          { 'source' => 'tasks', 'type' => 'belongs_to', 'destination' => 'users' },
-          { 'source' => 'users', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'tags', 'options' => { 'habtm_table' => 'companies_tags' } },
-          { 'source' => 'tags', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'users', 'options' => { 'habtm_table' => 'companies_tags' } }
-        ],
-        'schema' => [
-          { 'table' => 'companies_tags', 'columns' => [] }
-        ]
-      }
 
       expect(
         described_class.new(table_definition: table_definition, waml_definition: waml_definition).render

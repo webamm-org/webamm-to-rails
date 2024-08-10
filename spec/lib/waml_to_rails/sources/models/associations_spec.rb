@@ -3,27 +3,32 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Associations do
   describe '#collection' do
     it 'returns collection for parent child association' do
-      table_definition = {
-        'table' => 'categories',
-        'columns' => [],
-        'options' => {}
-      }
+      table_definition = WamlToRails::Definition::Database::Schema.new(
+        table: 'categories',
+        columns: [],
+        options: {},
+        indices: []
+      )
 
-      waml_definition = {
-        'schema' => [
-          {
-            'table' => 'categories',
-            'columns' => []
-          }
-        ],
-        'associations' => [
-          {
-            'type' => 'parent_children',
-            'source' => 'categories',
-            'required' => true
-          }
-        ]
-      }
+      waml_definition = WamlToRails::Definition.new(
+        database: {
+          engine: 'postgresql',
+          schema: [
+            {
+              table: 'categories',
+              columns: [],
+              indices: []
+            }
+          ],
+          relationships: [
+            {
+              type: 'parent_children',
+              source: 'categories',
+              required: true
+            }
+          ]
+        }
+      )
 
       expect(
         described_class.new(
@@ -38,31 +43,36 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
 
     context 'when processing table that is part of habtm' do
       it 'returns standard collection' do
-        table_definition = {
-          'table' => 'companies',
-          'columns' => [],
-          'options' => {}
-        }
+        table_definition = WamlToRails::Definition::Database::Schema.new(
+          table: 'companies',
+          columns: [],
+          options: {},
+          indices: []
+        )
 
-        waml_definition = {
-          'schema' => [
-            {
-              'table' => 'companies_tags',
-              'columns' => []
-            }
-          ],
-          'associations' => [
-            {
-              'type' => 'has_many_and_belongs_to_many',
-              'source' => 'companies',
-              'destination' => 'tags',
-              'required' => false,
-              'options' => {
-                'habtm_table' => 'companies_tags'
+        waml_definition = WamlToRails::Definition.new(
+          database: {
+            engine: 'postgresql',
+            schema: [
+              {
+                table: 'companies_tags',
+                columns: [],
+                indices: []
               }
-            }
-          ]
-        }
+            ],
+            relationships: [
+              {
+                type: 'has_many_and_belongs_to_many',
+                source: 'companies',
+                destination: 'tags',
+                required: false,
+                options: {
+                  habtm_table: 'companies_tags'
+                }
+              }
+            ]
+          }
+        )
 
         expect(
           described_class.new(
@@ -75,36 +85,43 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns collection with association to habtm table with columns' do
-        table_definition = {
-          'table' => 'companies',
-          'columns' => [],
-          'options' => {}
-        }
+        table_definition = WamlToRails::Definition::Database::Schema.new(
+          table: 'companies',
+          columns: [],
+          options: {},
+          indices: []
+        )
 
-        waml_definition = {
-          'schema' => [
-            {
-              'table' => 'companies_tags',
-              'columns' => [
-                {
-                  'name' => 'verified',
-                  'type' => 'boolean'
-                }
-              ]
-            }
-          ],
-          'associations' => [
-            {
-              'type' => 'has_many_and_belongs_to_many',
-              'source' => 'companies',
-              'destination' => 'tags',
-              'required' => false,
-              'options' => {
-                'habtm_table' => 'companies_tags'
+        waml_definition = WamlToRails::Definition.new(
+          database: {
+            engine: 'postgresql',
+            schema: [
+              {
+                table: 'companies_tags',
+                columns: [
+                  {
+                    name: 'verified',
+                    type: 'boolean',
+                    null: false,
+                    default: nil
+                  }
+                ],
+                indices: []
               }
-            }
-          ]
-        }
+            ],
+            relationships: [
+              {
+                type: 'has_many_and_belongs_to_many',
+                source: 'companies',
+                destination: 'tags',
+                required: false,
+                options: {
+                  habtm_table: 'companies_tags'
+                }
+              }
+            ]
+          }
+        )
 
         expect(
           described_class.new(
@@ -120,28 +137,33 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
 
     context 'when processing habtm table associations' do
       it 'returns standard collection' do
-        table_definition = {
-          'table' => 'users',
-          'columns' => [],
-          'options' => {}
-        }
+        table_definition = WamlToRails::Definition::Database::Schema.new(
+          table: 'users',
+          columns: [],
+          options: {},
+          indices: []
+        )
 
-        waml_definition = {
-          'associations' => [
-            {
-              'type' => 'belongs_to',
-              'source' => 'users',
-              'destination' => 'companies',
-              'required' => true
-            },
-            {
-              'type' => 'has_many',
-              'source' => 'users',
-              'destination' => 'posts',
-              'required' => false
-            }
-          ]
-        }
+        waml_definition = WamlToRails::Definition.new(
+          database: {
+            engine: 'postgresql',
+            schema: [],
+            relationships: [
+              {
+                type: 'belongs_to',
+                source: 'users',
+                destination: 'companies',
+                required: true
+              },
+              {
+                type: 'has_many',
+                source: 'users',
+                destination: 'posts',
+                required: false
+              }
+            ]
+          }
+        )
 
         expect(
           described_class.new(
@@ -155,18 +177,23 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns habtm collection' do
-        table_definition = {
-          'table' => 'companies_tags',
-          'columns' => [],
-          'options' => {
-            'habtm' => true,
-            'habtm_tables' => ['tags', 'companies']
-          }
-        }
+        table_definition = WamlToRails::Definition::Database::Schema.new(
+          table: 'companies_tags',
+          columns: [],
+          options: {
+            habtm: true,
+            habtm_tables: ['tags', 'companies']
+          },
+          indices: []
+        )
 
-        waml_definition = {
-          'associations' => []
-        }
+        waml_definition = WamlToRails::Definition.new(
+          database: {
+            engine: 'postgresql',
+            schema: [],
+            relationships: []
+          }
+        )
 
         expect(
           described_class.new(
@@ -177,23 +204,30 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns habtm with columns collection' do
-        table_definition = {
-          'table' => 'companies_tags',
-          'columns' => [
+        table_definition = WamlToRails::Definition::Database::Schema.new(
+          table: 'companies_tags',
+          columns: [
             {
-              'name' => 'verified',
-              'type' => 'boolean'
+              name: 'verified',
+              type: 'boolean',
+              null: false,
+              default: nil
             }
           ],
-          'options' => {
-            'habtm' => true,
-            'habtm_tables' => ['tags', 'companies']
-          }
-        }
+          options: {
+            habtm: true,
+            habtm_tables: ['tags', 'companies']
+          },
+          indices: []
+        )
 
-        waml_definition = {
-          'associations' => []
-        }
+        waml_definition = WamlToRails::Definition.new(
+          database: {
+            engine: 'postgresql',
+            schema: [],
+            relationships: []
+          }
+        )
 
         expect(
           described_class.new(

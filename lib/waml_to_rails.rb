@@ -1,5 +1,6 @@
 require 'active_support/all'
 
+require 'waml_to_rails/definition'
 require 'waml_to_rails/utils/format_code'
 
 require 'waml_to_rails/version'
