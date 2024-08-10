@@ -5,11 +5,11 @@ module WamlToRails
         files = [
           {
             path: '.github/workflows/ci.yml',
-            content: '' 
+            content: File.read(File.expand_path('templates/.github/workflows/ci.yml.erb', __dir__)) 
           },
           {
             path: '.github/dependabot.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/.github/dependabot.yml.erb', __dir__))
           },
           {
             path: 'app/assets/builds/.keep',
@@ -17,7 +17,7 @@ module WamlToRails
           },
           {
             path: 'app/assets/config/manifest.js',
-            content: ''
+            content: File.read(File.expand_path('templates/app/assets/config/manifest.js.erb', __dir__))
           },
           {
             path: 'app/assets/images/.keep',
@@ -25,19 +25,19 @@ module WamlToRails
           },
           {
             path: 'app/assets/stylesheets/application.tailwind.css',
-            content: ''
+            content: File.read(File.expand_path('templates/app/assets/stylesheets/application.tailwind.css.erb', __dir__))
           },
           {
             path: 'app/channels/application_cable/channel.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/channels/application_cable/channel.rb.erb', __dir__))
           },
           {
             path: 'app/channels/application_cable/connection.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/channels/application_cable/connection.rb.erb', __dir__))
           },
           {
             path: 'app/controllers/application_controller.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/controllers/application_controller.rb.erb', __dir__))
           },
           {
             path: 'app/controllers/concerns/.keep',
@@ -45,35 +45,35 @@ module WamlToRails
           },
           {
             path: 'app/helpers/application_helper.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/helpers/application_helper.rb.erb', __dir__))
           },
           {
             path: 'app/javascript/application.js',
-            content: ''
+            content: File.read(File.expand_path('templates/app/javascript/application.js.erb', __dir__))
           },
           {
             path: 'app/javascript/controllers/index.js',
-            content: ''
+            content: File.read(File.expand_path('templates/app/javascript/controllers/index.js.erb', __dir__))
           },
           {
             path: 'app/javascript/controllers/application.js',
-            content: ''
+            content: File.read(File.expand_path('templates/app/javascript/controllers/application.js.erb', __dir__))
           },
           {
             path: 'app/javascript/controllers/hello_controller.js',
-            content: ''
+            content: File.read(File.expand_path('templates/app/javascript/controllers/hello_controller.js.erb', __dir__))
           },
           {
             path: 'app/jobs/application_job.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/jobs/application_job.rb.erb', __dir__))
           },
           {
             path: 'app/mailers/application_mailer.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/mailers/application_mailer.rb.erb', __dir__))
           },
           {
             path: 'app/models/application_record.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/models/application_record.rb.erb', __dir__))
           },
           {
             path: 'app/models/concerns/.keep',
@@ -81,139 +81,139 @@ module WamlToRails
           },
           {
             path: 'app/models/application_record.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/models/application_record.rb.erb', __dir__))
           },
           {
             path: 'app/views/layouts/application.html.erb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/views/layouts/application.html.erb', __dir__))
           },
           {
             path: 'app/views/layouts/mailer.html.erb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/views/layouts/mailer.html.erb', __dir__))
           },
           {
             path: 'app/views/layouts/mailer.text.erb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/views/layouts/mailer.text.erb', __dir__))
           },
           {
             path: 'app/views/pwa/manifest.json.erb',
-            content: ''
+            content: File.read(File.expand_path('templates/app/views/pwa/manifest.json.erb', __dir__))
           },
           {
-            path: 'app/views/pwa/service_worker.js',
-            content: ''
+            path: 'app/views/pwa/service-worker.js',
+            content: File.read(File.expand_path('templates/app/views/pwa/service-worker.js.erb', __dir__))
           },
           {
             path: 'bin/brakeman',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/brakeman.erb', __dir__))
           },
           {
             path: 'bin/bundle',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/bundle.erb', __dir__))
           },
           {
             path: 'bin/dev',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/dev.erb', __dir__))
           },
           {
             path: 'bin/docker-entrypoint',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/docker-entrypoint.erb', __dir__))
           },
           {
             path: 'bin/rails',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/rails.erb', __dir__))
           },
           {
             path: 'bin/rake',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/rake.erb', __dir__))
           },
           {
             path: 'bin/rubocop',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/rubocop.erb', __dir__))
           },
           {
             path: 'bin/setup',
-            content: ''
+            content: File.read(File.expand_path('templates/bin/setup.erb', __dir__))
           },
           {
             path: 'config/environments/development.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/environments/development.rb.erb', __dir__))
           },
           {
             path: 'config/environments/production.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/environments/production.rb.erb', __dir__))
           },
           {
             path: 'config/environments/test.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/environments/test.rb.erb', __dir__))
           },
           {
             path: 'config/initializers/assets.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/initializers/assets.rb.erb', __dir__))
           },
           {
             path: 'config/initializers/content_security_policy.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/initializers/content_security_policy.rb.erb', __dir__))
           },
           {
             path: 'config/initializers/filter_parameter_logging.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/initializers/filter_parameter_logging.rb.erb', __dir__))
           },
           {
             path: 'config/initializers/inflections.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/initializers/inflections.rb.erb', __dir__))
           },
           {
             path: 'config/initializers/permissions_policy.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/initializers/permissions_policy.rb.erb', __dir__))
           },
           {
             path: 'config/locales/en.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/config/locales/en.yml.erb', __dir__))
           },
           {
             path: 'config/application.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/application.rb.erb', __dir__))
           },
           {
             path: 'config/boot.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/boot.rb.erb', __dir__))
           },
           {
             path: 'config/cable.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/config/cable.yml.erb', __dir__))
           },
           {
             path: 'config/credentials.yml.enc',
-            content: ''
+            content: File.read(File.expand_path('templates/config/credentials.yml.enc.erb', __dir__))
           },
           {
             path: 'config/database.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/config/database.yml.erb', __dir__))
           },
           {
             path: 'config/environment.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/environment.rb.erb', __dir__))
           },
           {
             path: 'config/master.key',
-            content: ''
+            content: File.read(File.expand_path('templates/config/master.key.erb', __dir__))
           },
           {
             path: 'config/puma.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/puma.rb.erb', __dir__))
           },
           {
             path: 'config/routes.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/config/routes.rb.erb', __dir__))
           },
           {
             path: 'config/storage.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/config/storage.yml.erb', __dir__))
           },
           {
             path: 'db/seeds.rb',
-            content: ''
+            content: File.read(File.expand_path('templates/db/seeds.rb.erb', __dir__))
           },
           {
             path: 'lib/assets/.keep',
@@ -233,31 +233,31 @@ module WamlToRails
           },
           {
             path: 'public/404.html',
-            content: ''
+            content: File.read(File.expand_path('templates/public/404.html.erb', __dir__))
           },
           {
             path: 'public/406-unsupported-browser.html',
-            content: ''
+            content: File.read(File.expand_path('templates/public/406-unsupported-browser.html.erb', __dir__))
           },
           {
             path: 'public/422.html',
-            content: ''
+            content: File.read(File.expand_path('templates/public/422.html.erb', __dir__))
           },
           {
             path: 'public/500.html',
-            content: ''
+            content: File.read(File.expand_path('templates/public/500.html.erb', __dir__))
           },
           {
             path: 'public/icon.png',
-            content: ''
+            content: File.read(File.expand_path('templates/public/icon.png.erb', __dir__))
           },
           {
             path: 'public/icon.svg',
-            content: ''
+            content: File.read(File.expand_path('templates/public/icon.svg.erb', __dir__))
           },
           {
             path: 'public/robots.txt',
-            content: ''
+            content: File.read(File.expand_path('templates/public/robots.txt.erb', __dir__))
           },
           {
             path: 'storage/.keep',
@@ -273,59 +273,59 @@ module WamlToRails
           },
           {
             path: '.dockerignore',
-            content: ''
+            content: File.read(File.expand_path('templates/dockerignore.erb', __dir__))
           },
           {
             path: '.gitattributes',
-            content: ''
+            content: File.read(File.expand_path('templates/gitattributes.erb', __dir__))
           },
           {
             path: '.gitignore',
-            content: ''
+            content: File.read(File.expand_path('templates/gitignore.erb', __dir__))
           },
           {
             path: '.node-version',
-            content: ''
+            content: File.read(File.expand_path('templates/node-version.erb', __dir__))
           },
           {
             path: '.rubocop.yml',
-            content: ''
+            content: File.read(File.expand_path('templates/rubocop.yml.erb', __dir__))
           },
           {
             path: '.ruby-version',
-            content: ''
+            content: File.read(File.expand_path('templates/ruby-version.erb', __dir__))
           },
           {
             path: 'config.ru',
-            content: ''
+            content: File.read(File.expand_path('templates/config.ru.erb', __dir__))
           },
           {
             path: 'Dockerfile',
-            content: ''
+            content: File.read(File.expand_path('templates/Dockerfile.erb', __dir__))
           },
           {
             path: 'Gemfile',
-            content: ''
+            content: File.read(File.expand_path('templates/Gemfile.erb', __dir__))
           },
           {
             path: 'package.json',
-            content: ''
+            content: File.read(File.expand_path('templates/package.json.erb', __dir__))
           },
           {
             path: 'Procfile.dev',
-            content: ''
+            content: File.read(File.expand_path('templates/Procfile.dev.erb', __dir__))
           },
           {
             path: 'Rakefile',
-            content: ''
+            content: File.read(File.expand_path('templates/Rakefile.erb', __dir__))
           },
           {
             path: 'README.md',
-            content: ''
+            content: File.read(File.expand_path('templates/README.md.erb', __dir__))
           },
           {
             path: 'tailwind.config.js',
-            content: ''
+            content: File.read(File.expand_path('templates/tailwind.config.js.erb', __dir__))
           }
         ]
       end
