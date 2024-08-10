@@ -2,6 +2,7 @@
   def change
     <%= table_definition %>
       <%= columns.join("\n") %>
+      <%= associations.join("\n") %>
 
       t.timestamps
     end

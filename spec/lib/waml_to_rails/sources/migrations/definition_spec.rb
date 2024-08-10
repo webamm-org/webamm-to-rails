@@ -22,11 +22,35 @@ RSpec.describe WamlToRails::Sources::Migrations::Definition do
         ]
       )
 
+      waml_definition = WamlToRails::Definition.new(
+        database: {
+          schema: [
+            table_definition,
+            WamlToRails::Definition::Database::Schema.new(
+              table: 'companies',
+              indices: [],
+              columns: [],
+              options: {}
+            )
+          ],
+          engine: 'postgresql',
+          relationships: [
+            WamlToRails::Definition::Database::Relationship.new(
+              type: 'belongs_to',
+              source: 'users',
+              destination: 'companies',
+              required: false
+            )
+          ]
+        }
+      )
+
       expected_definition = <<~RUBY
         class CreateUsers < ActiveRecord::Migration[7.1]
           def change
             create_table :users do |t|
               t.string :first_name, null: false
+              t.references :companies, foreign_key: true, null: true
 
               t.timestamps
             end
@@ -37,7 +61,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Definition do
       RUBY
 
       expect(
-        described_class.new(table_definition: table_definition).render
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
       ).to eq(expected_definition)
     end
   end

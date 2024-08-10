@@ -2,13 +2,15 @@ require_relative 'class_definition/presenter'
 require_relative 'table_definition/presenter'
 require_relative 'columns'
 require_relative 'indices'
+require_relative 'associations'
 
 module WamlToRails
   module Sources
     module Migrations
       class Definition
-        def initialize(table_definition:)
+        def initialize(table_definition:, waml_definition:)
           @table_definition = table_definition
+          @waml_definition = waml_definition
         end
 
         def render
@@ -39,6 +41,10 @@ module WamlToRails
 
         def indices
           ::WamlToRails::Sources::Migrations::Indices.new(table_definition: @table_definition).collection
+        end
+
+        def associations
+          ::WamlToRails::Sources::Migrations::Associations.new(table_definition: @table_definition, waml_definition: @waml_definition).collection
         end
       end
     end
