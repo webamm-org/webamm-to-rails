@@ -1,5 +1,6 @@
 require_relative 'class_definition/presenter'
 require_relative 'association_definition/presenter'
+require_relative 'associations'
 
 module WamlToRails
   module Sources
@@ -25,9 +26,7 @@ module WamlToRails
         end
 
         def associations
-          @waml_definition['associations'].select { |assoc| assoc['source'] == table_name }.map do |association|
-            ::WamlToRails::Sources::Models::AssociationDefinition::Presenter.new(table_definition: @table_definition, association: association).render
-          end
+          ::WamlToRails::Sources::Models::Associations.new(table_definition: @table_definition, waml_definition: @waml_definition).collection
         end
 
         def table_name

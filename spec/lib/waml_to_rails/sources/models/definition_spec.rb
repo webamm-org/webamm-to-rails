@@ -5,6 +5,7 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     it 'returns empty class definition' do
       table_definition = {
         'table' => 'users',
+        'columns' => [],
         'options' => {}
       }
 
@@ -21,6 +22,7 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     it 'returns class definition with base associations' do
       table_definition = {
         'table' => 'users',
+        'columns' => [],
         'options' => {}
       }
 
