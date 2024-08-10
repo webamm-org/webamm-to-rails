@@ -2,6 +2,40 @@ require 'spec_helper'
 
 RSpec.describe WamlToRails::Sources::Models::Associations do
   describe '#collection' do
+    it 'returns collection for parent child association' do
+      table_definition = {
+        'table' => 'categories',
+        'columns' => [],
+        'options' => {}
+      }
+
+      waml_definition = {
+        'schema' => [
+          {
+            'table' => 'categories',
+            'columns' => []
+          }
+        ],
+        'associations' => [
+          {
+            'type' => 'parent_children',
+            'source' => 'categories',
+            'required' => true
+          }
+        ]
+      }
+
+      expect(
+        described_class.new(
+          waml_definition: waml_definition,
+          table_definition: table_definition
+        ).collection
+      ).to eq([
+        "belongs_to :parent, optional: true, class_name: 'Category'",
+        "has_many :children, class_name: 'Category', foreign_key: 'parent_id', dependent: :destroy"
+      ])
+    end
+
     context 'when processing table that is part of habtm' do
       it 'returns standard collection' do
         table_definition = {

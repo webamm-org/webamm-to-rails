@@ -49,6 +49,24 @@ module WamlToRails
               else
                 base_associations << assoc
               end
+            elsif assoc['type'] == 'parent_children'
+              base_associations << {
+                'type' => 'belongs_to',
+                'source' => table_name,
+                'destination' => 'parent',
+                'required' => false,
+                'class_name' => table_name.classify
+              }
+
+              base_associations << {
+                'type' => 'has_many',
+                'source' => table_name,
+                'destination' => 'children',
+                'required' => true,
+                'class_name' => table_name.classify,
+                'foreign_key' => 'parent_id',
+                'dependent' => 'destroy'
+              }
             else
               base_associations << assoc
             end
