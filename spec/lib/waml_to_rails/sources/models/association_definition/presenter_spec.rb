@@ -28,6 +28,12 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
       ).to eq('has_many :companies')
     end
 
+    it 'renders has_many association with through' do
+      expect(
+        described_class.new(table_definition: { 'table' => 'users' }, association: { 'type' => 'has_many', 'destination' => 'companies', 'through' => 'user_companies' }).render
+      ).to eq('has_many :companies, through: :user_companies')
+    end
+
     it 'renders has_many_and_belongs_to_many association' do
       expect(
         described_class.new(table_definition: { 'table' => 'users' }, association: { 'type' => 'has_many_and_belongs_to_many', 'destination' => 'companies' }).render

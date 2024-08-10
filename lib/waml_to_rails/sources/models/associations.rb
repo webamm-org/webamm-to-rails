@@ -24,7 +24,37 @@ module WamlToRails
         end
 
         def raw_associations
-          @waml_definition['associations'].select { |assoc| assoc['source'] == table_name } | habtm_associations
+          base_associations = habtm_associations
+
+          @waml_definition['associations'].select { |assoc| assoc['source'] == table_name }.each do |assoc|
+            if assoc['type'] == 'has_many_and_belongs_to_many'
+              habtm_table_name = assoc['options']['habtm_table']
+              habtm_table = find_table_definition(habtm_table_name)
+
+              if habtm_table['columns'].any?
+                base_associations << {
+                  'type' => 'has_many',
+                  'source' => table_name,
+                  'destination' => habtm_table_name,
+                  'required' => true
+                }
+
+                base_associations << {
+                  'type' => 'has_many',
+                  'source' => table_name,
+                  'destination' => assoc['destination'],
+                  'required' => true,
+                  'through' => habtm_table_name
+                }
+              else
+                base_associations << assoc
+              end
+            else
+              base_associations << assoc
+            end
+          end
+
+          base_associations
         end
 
         def habtm_associations
@@ -46,6 +76,10 @@ module WamlToRails
               'destination' => table2
             }
           ]
+        end
+
+        def find_table_definition(table_name)
+          @waml_definition['schema'].find { |table| table['table'] == table_name }
         end
       end
     end

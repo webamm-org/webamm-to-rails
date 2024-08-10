@@ -19,7 +19,9 @@ module WamlToRails
             when 'has_one'
               "has_one :#{@association['destination'].underscore.singularize}"
             when 'has_many'
-              "has_many :#{@association['destination'].underscore.pluralize}"
+              assoc_def = "has_many :#{@association['destination'].underscore.pluralize}"
+              assoc_def << ", through: :#{@association['through']}" if @association['through']
+              assoc_def
             when 'has_many_and_belongs_to_many'
               "has_and_belongs_to_many :#{@association['destination'].underscore.pluralize}"
             else

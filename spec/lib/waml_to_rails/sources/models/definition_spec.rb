@@ -40,8 +40,11 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
           { 'source' => 'companies', 'type' => 'has_many', 'destination' => 'users' },
           { 'source' => 'users', 'type' => 'has_many', 'destination' => 'tasks' },
           { 'source' => 'tasks', 'type' => 'belongs_to', 'destination' => 'users' },
-          { 'source' => 'users', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'tags' },
-          { 'source' => 'tags', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'users' }
+          { 'source' => 'users', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'tags', 'options' => { 'habtm_table' => 'companies_tags' } },
+          { 'source' => 'tags', 'type' => 'has_many_and_belongs_to_many', 'destination' => 'users', 'options' => { 'habtm_table' => 'companies_tags' } }
+        ],
+        'schema' => [
+          { 'table' => 'companies_tags', 'columns' => [] }
         ]
       }
 
