@@ -3,17 +3,27 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Definition do
   describe '#render' do
     it 'returns empty class definition' do
+      table_definition = {
+        'table' => 'users',
+        'options' => {}
+      }
+
       expected_definition = <<~RUBY
         class User < ApplicationRecord
         end
       RUBY
 
       expect(
-        described_class.new(table_name: 'users', waml_definition: { 'associations' => [] }).render
+        described_class.new(table_definition: table_definition, waml_definition: { 'associations' => [] }).render
       ).to eq(expected_definition)
     end
 
     it 'returns class definition with base associations' do
+      table_definition = {
+        'table' => 'users',
+        'options' => {}
+      }
+
       expected_definition = <<~RUBY
         class User < ApplicationRecord
           belongs_to :company
@@ -34,7 +44,7 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
       }
 
       expect(
-        described_class.new(table_name: 'users', waml_definition: waml_definition).render
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
       ).to eq(expected_definition)
     end
   end

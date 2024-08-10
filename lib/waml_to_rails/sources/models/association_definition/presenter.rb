@@ -5,7 +5,8 @@ module WamlToRails
         class Presenter
           UnknownAssociationType = Class.new(StandardError)
 
-          def initialize(association:)
+          def initialize(table_definition:, association:)
+            @table_definition = table_definition
             @association = association
           end
 

@@ -5,15 +5,14 @@ module WamlToRails
   module Sources
     module Models
       class Definition
-        def initialize(table_name:, waml_definition:)
-          @table_name = table_name
+        def initialize(table_definition:, waml_definition:)
+          @table_definition = table_definition
           @waml_definition = waml_definition
         end
 
         def render
           template_path = File.expand_path('template.erb', __dir__)
           template_content = File.read(template_path)
-
           raw_content = ERB.new(template_content, trim_mode: '-').result(instance_eval { binding })
 
           ::WamlToRails::Utils::FormatCode.call(raw_content)
@@ -22,13 +21,17 @@ module WamlToRails
         private
 
         def class_definition
-          ::WamlToRails::Sources::Models::ClassDefinition::Presenter.new(table_name: @table_name).render
+          ::WamlToRails::Sources::Models::ClassDefinition::Presenter.new(table_name: table_name).render
         end
 
         def associations
-          @waml_definition['associations'].select { |assoc| assoc['source'] == @table_name }.map do |association|
-            ::WamlToRails::Sources::Models::AssociationDefinition::Presenter.new(association: association).render
+          @waml_definition['associations'].select { |assoc| assoc['source'] == table_name }.map do |association|
+            ::WamlToRails::Sources::Models::AssociationDefinition::Presenter.new(table_definition: @table_definition, association: association).render
           end
+        end
+
+        def table_name
+          @table_definition['table']
         end
       end
     end
