@@ -20,7 +20,7 @@ module WamlToRails
         end
 
         def habtm_table_with_columns?
-          @table_definition.columns.any? && @table_definition.options.respond_to?(:habtm)
+          @table_definition.columns.any? && !!@table_definition.options&.habtm
         end
 
         def raw_associations
