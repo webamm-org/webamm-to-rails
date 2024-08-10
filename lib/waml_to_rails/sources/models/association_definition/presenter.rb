@@ -15,6 +15,8 @@ module WamlToRails
               assoc_def = "belongs_to :#{@association['destination'].underscore.singularize}"
               assoc_def << ", optional: true" unless @association['required']
               assoc_def
+            when 'has_one'
+              "has_one :#{@association['destination'].underscore.singularize}"
             else
               raise UnknownAssociationType, @association['type']
             end

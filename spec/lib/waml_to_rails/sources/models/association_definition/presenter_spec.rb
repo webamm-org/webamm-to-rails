@@ -16,6 +16,12 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
       end
     end
 
+    it 'renders has_one association' do
+      expect(
+        described_class.new(association: { 'type' => 'has_one', 'destination' => 'companies' }).render
+      ).to eq('has_one :company')
+    end
+
     it 'raises error when association type is unknown' do
       expect {
         described_class.new(association: { type: 'unknown' }).render
