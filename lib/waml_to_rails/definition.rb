@@ -15,6 +15,7 @@ module WamlToRails
           attribute :type, Types::String
           attribute :null, Types::Bool.optional
           attribute :default, Types::String.optional
+          attribute? :values, Types::Array.optional
         end
         attribute :indices, Types::Array do
           attribute :name, Types::String

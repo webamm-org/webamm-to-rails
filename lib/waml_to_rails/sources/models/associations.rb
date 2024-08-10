@@ -1,3 +1,5 @@
+require_relative 'association_definition/presenter'
+
 module WamlToRails
   module Sources
     module Models

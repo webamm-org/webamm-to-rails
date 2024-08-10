@@ -1,5 +1,5 @@
 require_relative 'class_definition/presenter'
-require_relative 'association_definition/presenter'
+require_relative 'enums'
 require_relative 'associations'
 
 module WamlToRails
@@ -27,6 +27,10 @@ module WamlToRails
 
         def associations
           ::WamlToRails::Sources::Models::Associations.new(table_definition: @table_definition, waml_definition: @waml_definition).collection
+        end
+
+        def enums
+          ::WamlToRails::Sources::Models::Enums.new(table_definition: @table_definition).collection
         end
 
         def table_name

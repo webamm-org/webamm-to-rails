@@ -16,6 +16,27 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
       ).to eq(expected_definition)
     end
 
+    it 'returns class definition with enums' do
+      table_definition = WamlToRails::Definition::Database::Schema.new(
+        table: 'users',
+        indices: [],
+        columns: [
+          WamlToRails::Definition::Database::Schema::Column.new(name: 'status', type: 'enum_column', values: ['accepted', 'rejected'], default: 'accepted', null: false)
+        ]
+      )
+      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
+
+      expected_definition = <<~RUBY
+        class User < ApplicationRecord
+          enum :status, { accepted: 0, rejected: 1 }, default: :accepted
+        end
+      RUBY
+
+      expect(
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
+      ).to eq(expected_definition)
+    end
+
     it 'returns class definition with base associations' do
       table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
       waml_definition = WamlToRails::Definition.new(database: {
