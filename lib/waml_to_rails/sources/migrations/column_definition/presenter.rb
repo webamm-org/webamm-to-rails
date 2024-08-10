@@ -11,7 +11,7 @@ module WamlToRails
             if @column.type == 'enum_column'
               base_def = "t.integer :#{@column.name}, null: #{@column.null}"
 
-              if @column.default
+              if @column.default.present?
                 index_of_default = @column.values.index(@column.default)  
                 base_def += ", default: #{index_of_default}"
               end
@@ -20,9 +20,9 @@ module WamlToRails
             else
               base_def = "t.#{@column.type} :#{@column.name}, null: #{@column.null}"
 
-              if @column.default && @column.type == 'string'
+              if @column.default.present? && @column.type == 'string'
                 base_def += ", default: '#{@column.default}'"
-              elsif @column.default
+              elsif @column.default.present?
                 base_def += ", default: #{@column.default}"
               end
 

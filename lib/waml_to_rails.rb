@@ -17,6 +17,10 @@ module WamlToRails
         model_code = ::WamlToRails::Sources::Models::Definition.new(
           table_definition: table_schema, waml_definition: waml_definition
         ).render
+
+        migration_code = ::WamlToRails::Sources::Migrations::Definition.new(
+          table_definition: table_schema, waml_definition: waml_definition
+        ).render
       end
     end
   end
