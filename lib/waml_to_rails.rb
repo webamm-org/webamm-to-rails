@@ -6,8 +6,7 @@ require 'waml_to_rails/utils/format_code'
 
 require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'
-
-require 'waml_to_rails/sources/migrations/class_definition/presenter'
+require 'waml_to_rails/sources/migrations/definition'
 
 module WamlToRails
   class << self
