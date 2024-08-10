@@ -17,6 +17,8 @@ module WamlToRails
               assoc_def
             when 'has_one'
               "has_one :#{@association['destination'].underscore.singularize}"
+            when 'has_many'
+              "has_many :#{@association['destination'].underscore.pluralize}"
             else
               raise UnknownAssociationType, @association['type']
             end
