@@ -5,7 +5,6 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     it 'returns empty class definition' do
       expected_definition = <<~RUBY
         class User < ApplicationRecord
-          
         end
       RUBY
 

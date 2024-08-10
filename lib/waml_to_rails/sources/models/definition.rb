@@ -14,7 +14,9 @@ module WamlToRails
           template_path = File.expand_path('template.erb', __dir__)
           template_content = File.read(template_path)
 
-          ERB.new(template_content, trim_mode: '-').result(instance_eval { binding })
+          raw_content = ERB.new(template_content, trim_mode: '-').result(instance_eval { binding })
+
+          ::WamlToRails::Utils::FormatCode.call(raw_content)
         end
 
         private
