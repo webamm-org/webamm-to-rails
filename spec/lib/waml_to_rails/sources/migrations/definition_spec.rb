@@ -7,6 +7,10 @@ RSpec.describe WamlToRails::Sources::Migrations::Definition do
 
       expected_definition = <<~RUBY
         class CreateUsers < ActiveRecord::Migration[7.1]
+          def change
+            create_table :users do |t|
+            end
+          end
         end
       RUBY
 

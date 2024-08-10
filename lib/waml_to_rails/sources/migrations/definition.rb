@@ -1,4 +1,5 @@
 require_relative 'class_definition/presenter'
+require_relative 'table_definition/presenter'
 
 module WamlToRails
   module Sources
@@ -24,6 +25,10 @@ module WamlToRails
 
         def table_name
           @table_definition.table
+        end
+
+        def table_definition
+          ::WamlToRails::Sources::Migrations::TableDefinition::Presenter.new(table_definition: @table_definition).render
         end
       end
     end

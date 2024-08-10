@@ -25,6 +25,7 @@ module WamlToRails
         attribute? :options do
           attribute? :habtm, Types::Bool.optional
           attribute? :habtm_tables, Types::Array.optional
+          attribute? :use_uuid, Types::Bool.optional
         end
       end
       attribute :relationships, Types::Array do
