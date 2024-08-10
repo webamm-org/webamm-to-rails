@@ -7,6 +7,8 @@ require 'waml_to_rails/utils/format_code'
 require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'
 
+require 'waml_to_rails/sources/migrations/class_definition/presenter'
+
 module WamlToRails
   class << self
     def generate(waml_json)
