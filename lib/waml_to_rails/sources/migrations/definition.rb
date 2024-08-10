@@ -1,6 +1,7 @@
 require_relative 'class_definition/presenter'
 require_relative 'table_definition/presenter'
 require_relative 'columns'
+require_relative 'indices'
 
 module WamlToRails
   module Sources
@@ -34,6 +35,10 @@ module WamlToRails
 
         def columns
           ::WamlToRails::Sources::Migrations::Columns.new(table_definition: @table_definition).collection
+        end
+
+        def indices
+          ::WamlToRails::Sources::Migrations::Indices.new(table_definition: @table_definition).collection
         end
       end
     end
