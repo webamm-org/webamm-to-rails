@@ -1,7 +1,9 @@
 <%= class_definition %>
   def change
     <%= table_definition %>
+      <%= columns.join("\n") %>
 
+      t.timestamps
     end
   end
 end
