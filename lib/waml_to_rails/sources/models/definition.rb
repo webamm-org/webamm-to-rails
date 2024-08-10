@@ -22,6 +22,12 @@ module WamlToRails
         def class_definition
           ::WamlToRails::Sources::Models::ClassDefinition::Presenter.new(table_name: @table_name).render
         end
+
+        def associations
+          @waml_definition['associations'].select { |assoc| assoc['source'] == @table_name }.map do |association|
+            ::WamlToRails::Sources::Models::AssociationDefinition::Presenter.new(association: association).render
+          end
+        end
       end
     end
   end
