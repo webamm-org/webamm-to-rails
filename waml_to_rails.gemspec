@@ -18,5 +18,10 @@ Gem::Specification.new do |spec|
     'allowed_push_host' => 'https://rubygems.pkg.github.com/waml_to_rails'
   }
 
+  spec.add_runtime_dependency 'activesupport', '7.2'
+
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'pry'
+
   spec.required_ruby_version = '>= 3.2.2'
 end
