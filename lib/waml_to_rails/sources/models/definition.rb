@@ -1,4 +1,5 @@
 require_relative 'class_definition/presenter'
+require_relative 'association_definition/presenter'
 
 module WamlToRails
   module Sources
