@@ -1,4 +1,5 @@
 require_relative 'class_definition/presenter'
+require_relative 'devise_definition/presenter'
 require_relative 'enums'
 require_relative 'associations'
 
@@ -35,6 +36,10 @@ module WamlToRails
 
         def table_name
           @table_definition.table
+        end
+
+        def devise_definition
+          ::WamlToRails::Sources::Models::DeviseDefinition::Presenter.new(table_name: table_name, waml_definition: @waml_definition).render
         end
       end
     end

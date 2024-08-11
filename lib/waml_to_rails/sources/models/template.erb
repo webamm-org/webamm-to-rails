@@ -1,4 +1,5 @@
 <%= class_definition %>
+  <%= devise_definition %>
   <%= associations.join("\n  ") if associations.any? %>
   <%= enums.join("\n  ") if enums.any? %>
 end
