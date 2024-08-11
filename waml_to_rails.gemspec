@@ -14,8 +14,9 @@ Gem::Specification.new do |spec|
   spec.description   = spec.summary
   spec.files         = Dir['README.md', 'waml_to_rails.gemspec', 'lib/**/*']
   spec.require_paths = ['lib']
+
   spec.metadata = {
-    'allowed_push_host' => 'https://rubygems.pkg.github.com/waml_to_rails'
+    'allowed_push_host' => 'https://rubygems.pkg.github.com/rubypowerhouse'
   }
 
   spec.add_runtime_dependency 'activesupport', '7.2'

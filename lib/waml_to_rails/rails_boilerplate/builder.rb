@@ -247,14 +247,14 @@ module WamlToRails
             path: 'public/500.html',
             content: File.read(File.expand_path('templates/public/500.html.erb', __dir__))
           },
-          {
-            path: 'public/icon.png',
-            content: File.read(File.expand_path('templates/public/icon.png.erb', __dir__))
-          },
-          {
-            path: 'public/icon.svg',
-            content: File.read(File.expand_path('templates/public/icon.svg.erb', __dir__))
-          },
+          # {
+          #   path: 'public/icon.png',
+          #   content: File.read(File.expand_path('templates/public/icon.png.erb', __dir__))
+          # },
+          # {
+          #   path: 'public/icon.svg',
+          #   content: File.read(File.expand_path('templates/public/icon.svg.erb', __dir__))
+          # },
           {
             path: 'public/robots.txt',
             content: File.read(File.expand_path('templates/public/robots.txt.erb', __dir__))

@@ -1,5 +1,4 @@
 require 'active_support/all'
-require 'pry'
 
 require 'waml_to_rails/definition'
 require 'waml_to_rails/utils/format_code'
