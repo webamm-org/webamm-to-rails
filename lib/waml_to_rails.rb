@@ -7,6 +7,7 @@ require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'
 require 'waml_to_rails/sources/migrations/files_list'
 require 'waml_to_rails/sources/gemfile/definition'
+require 'waml_to_rails/sources/routes/definition'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -31,6 +32,13 @@ module WamlToRails
       files << {
         path: 'Gemfile',
         content: ::WamlToRails::Sources::Gemfile::Definition.new(
+          waml_definition: waml_definition
+        ).render
+      }
+
+      files << {
+        path: 'config/routes.rb',
+        content: ::WamlToRails::Sources::Routes::Definition.new(
           waml_definition: waml_definition
         ).render
       }

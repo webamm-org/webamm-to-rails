@@ -204,10 +204,6 @@ module WamlToRails
             content: File.read(File.expand_path('templates/config/puma.rb.erb', __dir__))
           },
           {
-            path: 'config/routes.rb',
-            content: File.read(File.expand_path('templates/config/routes.rb.erb', __dir__))
-          },
-          {
             path: 'config/storage.yml',
             content: File.read(File.expand_path('templates/config/storage.yml.erb', __dir__))
           },
