@@ -1,0 +1,17 @@
+source "https://rubygems.org"
+
+<% gems[:default].each do |gem_def| %>
+  <%= gem_def -%>
+<% end %>
+
+group :development do
+<% gems[:development].each do |gem_def| %>
+  <%= gem_def -%>
+<% end %>
+end
+
+group [:development, :test] do
+<% gems[[:development, :test]].each do |gem_def| %>
+  <%= gem_def -%>
+<% end %>
+end

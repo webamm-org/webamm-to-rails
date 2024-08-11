@@ -6,6 +6,7 @@ require 'waml_to_rails/utils/format_code'
 require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'
 require 'waml_to_rails/sources/migrations/files_list'
+require 'waml_to_rails/sources/gemfile/definition'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -26,6 +27,13 @@ module WamlToRails
           content: model_code
         }
       end
+
+      files << {
+        path: 'Gemfile',
+        content: ::WamlToRails::Sources::Gemfile::Definition.new(
+          waml_definition: waml_definition
+        ).render
+      }
 
       files | ::WamlToRails::Sources::Migrations::FilesList.new(
         waml_definition: waml_definition, database_tables: waml_definition.database.schema

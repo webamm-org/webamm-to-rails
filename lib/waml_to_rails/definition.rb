@@ -6,6 +6,10 @@ end
 
 module WamlToRails
   class Definition < Dry::Struct
+    attribute? :authentication, Types::Array do
+      attribute :table, Types::String
+      attribute? :features, Types::Array
+    end
     attribute :database do
       attribute :engine, Types::String
       attribute :schema, Types::Array do
