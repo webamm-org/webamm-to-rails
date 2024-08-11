@@ -5,11 +5,11 @@ module WamlToRails
         files = [
           {
             path: '.github/workflows/ci.yml',
-            content: File.read(File.expand_path('templates/.github/workflows/ci.yml.erb', __dir__)) 
+            content: File.read(File.expand_path('templates/github/workflows/ci.yml.erb', __dir__)) 
           },
           {
             path: '.github/dependabot.yml',
-            content: File.read(File.expand_path('templates/.github/dependabot.yml.erb', __dir__))
+            content: File.read(File.expand_path('templates/github/dependabot.yml.erb', __dir__))
           },
           {
             path: 'app/assets/builds/.keep',
