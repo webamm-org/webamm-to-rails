@@ -109,6 +109,13 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
           required: true,
           group: :default,
           platforms: []
+        ),
+        ::WamlToRails::Sources::Gemfile::Gem.new(
+          name: 'rqrcode',
+          version: '2.2.0',
+          required: true,
+          group: :default,
+          platforms: []
         )
       ])
     end
@@ -148,6 +155,13 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
         ::WamlToRails::Sources::Gemfile::Gem.new(
           name: 'devise-otp',
           version: '0.7.1',
+          required: true,
+          group: :default,
+          platforms: []
+        ),
+        ::WamlToRails::Sources::Gemfile::Gem.new(
+          name: 'rqrcode',
+          version: '2.2.0',
           required: true,
           group: :default,
           platforms: []

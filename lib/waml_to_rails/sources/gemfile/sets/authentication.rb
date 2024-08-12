@@ -22,6 +22,7 @@ module WamlToRails
 
             if @waml_definition.authentication.any? { |auth| auth.features.include?('two_factor_authentication') }
               base_collection << ::WamlToRails::Sources::Gemfile::Gem.new(name: "devise-otp", version: "0.7.1", required: true, group: :default, platforms: [])
+              base_collection << ::WamlToRails::Sources::Gemfile::Gem.new(name: "rqrcode", version: "2.2.0", required: true, group: :default, platforms: [])
             end
 
             base_collection
