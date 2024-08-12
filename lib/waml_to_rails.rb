@@ -10,6 +10,7 @@ require 'waml_to_rails/sources/gemfile/definition'
 require 'waml_to_rails/sources/routes/definition'
 require 'waml_to_rails/sources/initializers/definitions'
 require 'waml_to_rails/sources/views/definition'
+require 'waml_to_rails/sources/helpers/definitions'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -60,6 +61,11 @@ module WamlToRails
 
       # Views
       files |= ::WamlToRails::Sources::Views::Definition.new(
+        waml_definition: waml_definition
+      ).collection
+
+      # Helpers
+      files |= ::WamlToRails::Sources::Helpers::Definitions.new(
         waml_definition: waml_definition
       ).collection
 
