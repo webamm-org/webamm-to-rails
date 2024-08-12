@@ -3,7 +3,7 @@ module WamlToRails
     module Gemfile
       class DefaultSet
         GEMS = [
-          ::WamlToRails::Sources::Gemfile::Gem.new(name: "rails", version: "~> 7.2.0", required: true, group: :default, platforms: []),
+          ::WamlToRails::Sources::Gemfile::Gem.new(name: "rails", version: "7.1.0", required: true, group: :default, platforms: []),
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "sprockets-rails", version: nil, required: true, group: :default, platforms: []),
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "pg", version: "~> 1.1", required: true, group: :default, platforms: []),
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "puma", version: ">= 5.0", required: true, group: :default, platforms: []),

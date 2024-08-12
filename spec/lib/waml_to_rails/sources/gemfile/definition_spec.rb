@@ -20,7 +20,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Definition do
       expected_definition = <<~RUBY
         source "https://rubygems.org"
 
-        gem "rails", "~> 7.2.0"
+        gem "rails", "7.1.0"
         gem "sprockets-rails"
         gem "pg", "~> 1.1"
         gem "puma", ">= 5.0"

@@ -8,6 +8,7 @@ require 'waml_to_rails/sources/models/definition'
 require 'waml_to_rails/sources/migrations/files_list'
 require 'waml_to_rails/sources/gemfile/definition'
 require 'waml_to_rails/sources/routes/definition'
+require 'waml_to_rails/sources/initializers/definitions'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -42,6 +43,10 @@ module WamlToRails
           waml_definition: waml_definition
         ).render
       }
+
+      files |= ::WamlToRails::Sources::Initializers::Definitions.new(
+        waml_definition: waml_definition
+      ).collection
 
       files | ::WamlToRails::Sources::Migrations::FilesList.new(
         waml_definition: waml_definition, database_tables: waml_definition.database.schema
