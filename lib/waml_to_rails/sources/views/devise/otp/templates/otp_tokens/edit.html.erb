@@ -1,0 +1,48 @@
+<div class="max-w-screen-md mx-auto mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
+  <div class="p-4 sm:p-7">
+    <div class="text-center">
+      <h1 class="block text-2xl font-bold text-gray-800 dark:text-white"><%= I18n.t('title', :scope => 'devise.otp.edit_otp_token') %></h1>
+      <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+        <%= I18n.t('explain', :scope => 'devise.otp.edit_otp_token') %>
+      </p>
+      <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+        <%= I18n.t('step_1', :scope => 'devise.otp.edit_otp_token') %>
+      </p>
+      <%= image_tag(qr_code_for_devise(resource), class: 'mx-auto') %>
+
+    </div>
+
+    <div class="mt-5">
+
+      <div class="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-neutral-500 dark:before:border-neutral-600 dark:after:border-neutral-600">Or</div>
+
+      <div class="text-center">
+        <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+          <strong><%= I18n.t('manual_provisioning', :scope => 'devise.otp.token_secret') %>:</strong>
+          <code><%= resource.otp_auth_secret %></code>
+        </p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+          <%= I18n.t('step_2', :scope => 'devise.otp.edit_otp_token') %>
+        </p>
+      </div>
+
+      <!-- Form -->
+      <%= form_with(:url => [resource_name, :otp_token], :method => :put) do |f| %>
+        <div class="grid gap-y-4">
+          <!-- Form Group -->
+          <div>
+            <%= f.label :confirmation_code, I18n.t('confirmation_code', :scope => 'devise.otp.edit_otp_token'), class: 'block text-sm mb-2 dark:text-white' %>
+            <div class="relative">
+              <%= f.text_field :confirmation_code, class: 'py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" required aria-describedby="email-error' %>
+            </div>
+            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
+          </div>
+          <!-- End Form Group -->
+
+          <%= f.submit I18n.t('submit', :scope => 'devise.otp.edit_otp_token'), class: 'w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none' %>
+        </div>
+      <% end %>
+      <!-- End Form -->
+    </div>
+  </div>
+</div>

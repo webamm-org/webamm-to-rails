@@ -1,0 +1,21 @@
+<h1 class="text-4xl dark:text-white mb-4"><%= I18n.t('title', :scope => 'devise.otp.otp_tokens') %></h1>
+
+<ul class="mt-3 flex flex-col">
+  <li class="inline-flex items-center gap-x-2 py-3 px-4 text-sm border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:border-neutral-700 dark:text-neutral-200">
+    <div class="flex items-center justify-between w-full">
+      <span><strong>Status:</strong></span>
+      <span><%= resource.otp_enabled? ? "Enabled" : "Disabled" %></span>
+    </div>
+  </li>
+</ul>
+
+<%- if resource.otp_enabled? %>
+  <%= render :partial => 'token_secret' if resource.otp_enabled? %>
+  <%= render :partial => 'trusted_devices' if trusted_devices_enabled? %>
+
+  <% unless otp_mandatory_on?(resource) %>
+    <%= button_to I18n.t('disable_link', :scope => 'devise.otp.otp_tokens'), @resource, :method => :delete, :data => { "turbo-method": "DELETE" }, class: 'py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 mt-4' %>
+  <% end %>
+<% else %>
+  <%= link_to I18n.t('enable_link', :scope => 'devise.otp.otp_tokens'), edit_otp_token_path_for(resource), class: 'py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 mt-4' %>
+<% end %>

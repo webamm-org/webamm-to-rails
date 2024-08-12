@@ -9,6 +9,7 @@ require 'waml_to_rails/sources/migrations/files_list'
 require 'waml_to_rails/sources/gemfile/definition'
 require 'waml_to_rails/sources/routes/definition'
 require 'waml_to_rails/sources/initializers/definitions'
+require 'waml_to_rails/sources/views/definition'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -19,6 +20,7 @@ module WamlToRails
 
       waml_definition = ::WamlToRails::Definition.new(waml_json.deep_symbolize_keys)
 
+      # Models
       waml_definition.database.schema.each do |table_schema|
         model_code = ::WamlToRails::Sources::Models::Definition.new(
           table_definition: table_schema, waml_definition: waml_definition
@@ -30,6 +32,7 @@ module WamlToRails
         }
       end
 
+      # Gemfile
       files << {
         path: 'Gemfile',
         content: ::WamlToRails::Sources::Gemfile::Definition.new(
@@ -37,6 +40,7 @@ module WamlToRails
         ).render
       }
 
+      # Routes
       files << {
         path: 'config/routes.rb',
         content: ::WamlToRails::Sources::Routes::Definition.new(
@@ -44,13 +48,22 @@ module WamlToRails
         ).render
       }
 
+      # Initializers
       files |= ::WamlToRails::Sources::Initializers::Definitions.new(
         waml_definition: waml_definition
       ).collection
 
-      files | ::WamlToRails::Sources::Migrations::FilesList.new(
+      # Migrations
+      files |= ::WamlToRails::Sources::Migrations::FilesList.new(
         waml_definition: waml_definition, database_tables: waml_definition.database.schema
       ).collection
+
+      # Views
+      files |= ::WamlToRails::Sources::Views::Definition.new(
+        waml_definition: waml_definition
+      ).collection
+
+      files
     end
   end
 end
