@@ -300,10 +300,6 @@ module WamlToRails
             content: File.read(File.expand_path('templates/Dockerfile.erb', __dir__))
           },
           {
-            path: 'package.json',
-            content: File.read(File.expand_path('templates/package.json.erb', __dir__))
-          },
-          {
             path: 'Procfile.dev',
             content: File.read(File.expand_path('templates/Procfile.dev.erb', __dir__))
           },

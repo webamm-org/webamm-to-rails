@@ -11,6 +11,8 @@ require 'waml_to_rails/sources/routes/definition'
 require 'waml_to_rails/sources/initializers/definitions'
 require 'waml_to_rails/sources/views/definition'
 require 'waml_to_rails/sources/helpers/definitions'
+require 'waml_to_rails/sources/package_json/definition'
+require 'waml_to_rails/features/definitions'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -32,6 +34,14 @@ module WamlToRails
           content: model_code
         }
       end
+
+      # package.json
+      files << {
+        path: 'package.json',
+        content: ::WamlToRails::Sources::PackageJson::Definition.new(
+          waml_definition: waml_definition
+        ).render
+      }
 
       # Gemfile
       files << {
@@ -66,6 +76,11 @@ module WamlToRails
 
       # Helpers
       files |= ::WamlToRails::Sources::Helpers::Definitions.new(
+        waml_definition: waml_definition
+      ).collection
+
+      # Features
+      files |= ::WamlToRails::Features::Definitions.new(
         waml_definition: waml_definition
       ).collection
 

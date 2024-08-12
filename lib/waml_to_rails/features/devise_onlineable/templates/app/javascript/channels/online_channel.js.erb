@@ -1,0 +1,48 @@
+import consumer from "./consumer"
+
+consumer.subscriptions.create("OnlineChannel", {
+  initialized() {
+    this.update = this.update.bind(this)
+  },
+
+  connected() {
+    this.install()
+    this.update()
+  },
+
+  disconnected() {
+    this.uninstall()
+  },
+
+  rejected() {
+    this.uninstall()
+  },
+
+  update() {
+    if(this.documentIsActive) {
+      this.appear()
+    }
+  },
+
+  appear() {
+    this.perform("appear")
+  },
+
+  install() {
+    window.addEventListener("focus", this.update)
+    window.addEventListener("blur", this.update)
+    document.addEventListener("turbo:load", this.update)
+    document.addEventListener("visibilitychange", this.update)
+  },
+
+  uninstall() {
+    window.removeEventListener("focus", this.update)
+    window.removeEventListener("blur", this.update)
+    document.removeEventListener("turbo:load", this.update)
+    document.removeEventListener("visibilitychange", this.update)
+  },
+
+  get documentIsActive() {
+    return document.visibilityState === "visible" && document.hasFocus()
+  },
+})
