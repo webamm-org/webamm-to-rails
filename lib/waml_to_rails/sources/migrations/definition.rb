@@ -36,11 +36,11 @@ module WamlToRails
         end
 
         def columns
-          ::WamlToRails::Sources::Migrations::Columns.new(table_definition: @table_definition).collection
+          ::WamlToRails::Sources::Migrations::Columns.new(waml_definition: @waml_definition, table_definition: @table_definition).collection
         end
 
         def indices
-          ::WamlToRails::Sources::Migrations::Indices.new(table_definition: @table_definition).collection
+          ::WamlToRails::Sources::Migrations::Indices.new(waml_definition: @waml_definition, table_definition: @table_definition).collection
         end
 
         def associations
