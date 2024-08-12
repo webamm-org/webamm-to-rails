@@ -6,7 +6,7 @@ end
 
 module WamlToRails
   class Definition < Dry::Struct
-    attribute? :authentication, Types::Array do
+    attribute? :authentication, Types::Array.default([].freeze) do
       attribute :table, Types::String
       attribute? :features, Types::Array
     end
