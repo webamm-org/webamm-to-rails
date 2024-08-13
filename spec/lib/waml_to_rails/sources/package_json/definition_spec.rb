@@ -19,7 +19,7 @@ RSpec.describe ::WamlToRails::Sources::PackageJson::Definition do
 
       expect(
         described_class.new(waml_definition: waml_definition).render
-      ).to eq({"name"=>"app", "private"=>true, "devDependencies"=>{"esbuild"=>"^0.23.0"}, "scripts"=>{"build"=>"esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets", "build:css"=>"tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"}, "dependencies"=>{"@hotwired/stimulus"=>"^3.2.2", "@hotwired/turbo-rails"=>"^8.0.5", "autoprefixer"=>"^10.4.20", "postcss"=>"^8.4.41", "tailwindcss"=>"^3.4.9"}})
+      ).to eq({"name"=>"app", "private"=>true, "devDependencies"=>{"esbuild"=>"^0.23.0"}, "scripts"=>{"build"=>"esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets", "build:css"=>"tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"}, "dependencies"=>{"@hotwired/stimulus"=>"^3.2.2", "@hotwired/turbo-rails"=>"^8.0.5", "autoprefixer"=>"^10.4.20", "postcss"=>"^8.4.41", "tailwindcss"=>"^3.4.9"}}.to_json)
     end
 
     it 'returns default json with actioncable' do
@@ -39,7 +39,7 @@ RSpec.describe ::WamlToRails::Sources::PackageJson::Definition do
 
       expect(
         described_class.new(waml_definition: waml_definition).render
-      ).to eq({"name"=>"app", "private"=>true, "devDependencies"=>{"esbuild"=>"^0.23.0"}, "scripts"=>{"build"=>"esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets", "build:css"=>"tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"}, "dependencies"=>{"@hotwired/stimulus"=>"^3.2.2", "@hotwired/turbo-rails"=>"^8.0.5", "autoprefixer"=>"^10.4.20", "postcss"=>"^8.4.41", "tailwindcss"=>"^3.4.9", "actioncable"=>"7.1.3"}})
+      ).to eq({"name"=>"app", "private"=>true, "devDependencies"=>{"esbuild"=>"^0.23.0"}, "scripts"=>{"build"=>"esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets", "build:css"=>"tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"}, "dependencies"=>{"@hotwired/stimulus"=>"^3.2.2", "@hotwired/turbo-rails"=>"^8.0.5", "autoprefixer"=>"^10.4.20", "postcss"=>"^8.4.41", "tailwindcss"=>"^3.4.9", "@rails/actioncable"=>"7.1.3-4"}}.to_json)
     end
   end
 end

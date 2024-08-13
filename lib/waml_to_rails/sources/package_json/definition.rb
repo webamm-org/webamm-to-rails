@@ -13,7 +13,7 @@ module WamlToRails
           template_content = File.read(template_path)
           raw_content = ERB.new(template_content, trim_mode: '-').result(instance_eval { binding })
 
-          JSON.parse(raw_content)
+          JSON.parse(raw_content).to_json
         end
 
         private

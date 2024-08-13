@@ -39,7 +39,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Definition do
           gem "web-console", require: false
         end
 
-        group [:development, :test] do
+        group :development, :test do
           gem "debug", require: false, platforms: %i[mri windows]
           gem "brakeman", require: false
           gem "rubocop-rails-omakase", require: false
