@@ -1,5 +1,7 @@
 <%= class_definition %>
+  <%= concerns.join("\n") if concerns.any? %>
   <%= devise_definition %>
-  <%= associations.join("\n  ") if associations.any? %>
-  <%= enums.join("\n  ") if enums.any? %>
+  <%= associations.join("\n") if associations.any? %>
+  <%= enums.join("\n") if enums.any? %>
+  <%= attachments.join("\n ") if attachments.any? %>
 end

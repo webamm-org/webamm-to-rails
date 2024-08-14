@@ -16,6 +16,57 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
       ).to eq(expected_definition)
     end
 
+    it 'returns class definition with concerns' do
+      table_definition = WamlToRails::Definition::Database::Schema.new(
+        table: 'users',
+        indices: [],
+        columns: []
+      )
+      waml_definition = WamlToRails::Definition.new(
+        database: { relationships: [], schema: [], engine: 'postgresql' },
+        authentication: [
+          {
+            table: 'users',
+            features: ['online_indication']
+          }
+        ]
+      )
+
+      expected_definition = <<~RUBY
+        class User < ApplicationRecord
+          include DeviseOnlineable
+          devise :database_authenticatable, :validatable, :rememberable, :recoverable, :trackable
+        end
+      RUBY
+
+      expect(
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
+      ).to eq(expected_definition)
+    end
+
+    it 'returns class definition with attachments' do
+      table_definition = WamlToRails::Definition::Database::Schema.new(
+        table: 'users',
+        indices: [],
+        columns: [
+          WamlToRails::Definition::Database::Schema::Column.new(name: 'avatar', type: 'file', default: nil, null: false),
+          WamlToRails::Definition::Database::Schema::Column.new(name: 'photos', type: 'file', default: nil, null: false)
+        ]
+      )
+      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
+
+      expected_definition = <<~RUBY
+        class User < ApplicationRecord
+          has_one_attached :avatar
+          has_many_attached :photos
+        end
+      RUBY
+
+      expect(
+        described_class.new(table_definition: table_definition, waml_definition: waml_definition).render
+      ).to eq(expected_definition)
+    end
+
     it 'returns class definition with enums' do
       table_definition = WamlToRails::Definition::Database::Schema.new(
         table: 'users',

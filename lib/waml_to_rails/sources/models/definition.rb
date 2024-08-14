@@ -2,6 +2,8 @@ require_relative 'class_definition/presenter'
 require_relative 'devise_definition/presenter'
 require_relative 'enums'
 require_relative 'associations'
+require_relative 'concerns'
+require_relative 'attachments'
 
 module WamlToRails
   module Sources
@@ -34,12 +36,20 @@ module WamlToRails
           ::WamlToRails::Sources::Models::Enums.new(table_definition: @table_definition).collection
         end
 
+        def concerns
+          ::WamlToRails::Sources::Models::Concerns.new(table_definition: @table_definition, waml_definition: @waml_definition).collection
+        end
+
         def table_name
           @table_definition.table
         end
 
         def devise_definition
           ::WamlToRails::Sources::Models::DeviseDefinition::Presenter.new(table_name: table_name, waml_definition: @waml_definition).render
+        end
+
+        def attachments
+          ::WamlToRails::Sources::Models::Attachments.new(table_definition: @table_definition).collection
         end
       end
     end
