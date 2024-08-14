@@ -20,7 +20,7 @@ module WamlToRails
 
           if uuid_presenter.render?
             migrations << {
-              path: uuid_presenter.file_name(migration_timestamp + migration_count),
+              path: uuid_presenter.file_name((migration_timestamp + migration_count).strftime('%Y%m%d%H%M%S')),
               content: uuid_presenter.render
             }
 
@@ -31,7 +31,7 @@ module WamlToRails
 
           if active_storage_presenter.render?
             migrations << {
-              path: active_storage_presenter.file_name(migration_timestamp + migration_count),
+              path: active_storage_presenter.file_name((migration_timestamp + migration_count).strftime('%Y%m%d%H%M%S')),
               content: active_storage_presenter.render
             }
 

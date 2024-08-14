@@ -3,6 +3,17 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
   describe '#render' do
     context 'when rendering enum column' do
+      it 'returns nil when column type is file' do
+        column = WamlToRails::Definition::Database::Schema::Column.new(
+          name: 'avatar',
+          type: 'file',
+          null: false,
+          default: nil
+        )
+
+        expect(described_class.new(column: column).render).to eq(nil)
+      end
+
       it 'returns standard enum column definition' do
         column = WamlToRails::Definition::Database::Schema::Column.new(
           name: 'status',

@@ -8,6 +8,8 @@ module WamlToRails
           end
 
           def render
+            return if @column.type == 'file'
+
             if @column.type == 'enum_column'
               base_def = "t.integer :#{@column.name}, null: #{@column.null}"
 

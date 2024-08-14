@@ -11,7 +11,7 @@ module WamlToRails
         end
 
         def collection
-          columns.uniq(&:name).map do |column|
+          columns.compact.uniq(&:name).map do |column|
             ::WamlToRails::Sources::Migrations::ColumnDefinition::Presenter.new(column: column).render
           end
         end
