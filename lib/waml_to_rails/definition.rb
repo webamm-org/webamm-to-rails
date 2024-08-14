@@ -22,7 +22,7 @@ module WamlToRails
           attribute :default, Types::StrongString.optional
           attribute? :values, Types::Array.optional
         end
-        attribute :indices, Types::Array do
+        attribute :indices, Types::Array.default([].freeze) do
           attribute :name, Types::String
           attribute :columns, Types::Array
           attribute :unique, Types::Bool.optional
