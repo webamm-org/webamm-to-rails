@@ -1,4 +1,6 @@
 require_relative 'definition'
+require_relative 'uuid_definition/presenter'
+require_relative 'active_storage_definition/presenter'
 
 module WamlToRails
   module Sources
@@ -11,14 +13,26 @@ module WamlToRails
 
         def collection
           migrations = []
-          migration_timestamp = Time.now.utc - number_of_migrations
+          migration_timestamp = Time.now.utc - 1_000
           migration_count = 0
 
-          if enable_uuid?
-            migration_content = "class EnableUuid < ActiveRecord::Migration[7.1]\n  def change\n    enable_extension 'pgcrypto'\n  end\nend"
+          uuid_presenter = ::WamlToRails::Sources::Migrations::UuidDefinition::Presenter.new(waml_definition: @waml_definition)
+
+          if uuid_presenter.render?
             migrations << {
-              path: "db/migrate/#{(migration_timestamp + migration_count).strftime('%Y%m%d%H%M%S')}_enable_uuid.rb",
-              content: migration_content
+              path: uuid_presenter.file_name(migration_timestamp + migration_count),
+              content: uuid_presenter.render
+            }
+
+            migration_count += 1
+          end
+
+          active_storage_presenter = ::WamlToRails::Sources::Migrations::ActiveStorageDefinition::Presenter.new(waml_definition: @waml_definition)
+
+          if active_storage_presenter.render?
+            migrations << {
+              path: active_storage_presenter.file_name(migration_timestamp + migration_count),
+              content: active_storage_presenter.render
             }
 
             migration_count += 1
@@ -64,14 +78,6 @@ module WamlToRails
         end
 
         private
-
-        def enable_uuid?
-          @database_tables.any? { |table| table.options&.use_uuid.present? }
-        end
-
-        def number_of_migrations
-          enable_uuid? ? @database_tables.size + 1 : @database_tables.size
-        end
 
         # helper to topologically sort models
         def visit(model, models_hash, sorted_models, visited, temp_marks)
