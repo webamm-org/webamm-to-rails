@@ -2,6 +2,7 @@ require 'dry-struct'
 
 module Types
   include Dry.Types()
+  StrongString = String.constructor(->(val){ val.to_s })
 end
 
 module WamlToRails
@@ -18,7 +19,7 @@ module WamlToRails
           attribute :name, Types::String
           attribute :type, Types::String
           attribute :null, Types::Bool.optional
-          attribute :default, Types::String.optional
+          attribute :default, Types::StrongString.optional
           attribute? :values, Types::Array.optional
         end
         attribute :indices, Types::Array do
