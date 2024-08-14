@@ -15,7 +15,9 @@ module WamlToRails
               assoc_def += ", type: :uuid" if relation_table_definition.options&.use_uuid
               assoc_def
             elsif assoc.type == 'parent_children'
-              "t.references :parent, foreign_key: { to_table: :#{@table_definition.table} }, null: true"
+              assoc_def = "t.references :parent, foreign_key: { to_table: :#{@table_definition.table} }, null: true"
+              assoc_def += ", type: :uuid" if @table_definition.options&.use_uuid
+              assoc_def
             end
           end
 

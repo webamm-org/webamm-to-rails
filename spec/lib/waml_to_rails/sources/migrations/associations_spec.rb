@@ -72,6 +72,44 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
           ]
         )
       end
+
+      it 'returns collection for parent children association with uuid' do
+        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+          table: 'categories',
+          indices: [],
+          columns: [],
+          options: {
+            use_uuid: true
+          }
+        )
+
+        waml_definition = ::WamlToRails::Definition.new(
+          database: {
+            schema: [
+              table_definition,
+            ],
+            engine: 'postgresql',
+            relationships: [
+              ::WamlToRails::Definition::Database::Relationship.new(
+                source: 'categories',
+                required: false,
+                type: 'parent_children'
+              )
+            ]
+          }
+        )
+
+        expect(
+          described_class.new(
+            table_definition: table_definition,
+            waml_definition: waml_definition
+          ).collection
+        ).to eq(
+          [
+            't.references :parent, foreign_key: { to_table: :categories }, null: true, type: :uuid'
+          ]
+        )
+      end
     end
 
     context 'belongs_to association' do
