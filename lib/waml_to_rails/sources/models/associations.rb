@@ -34,14 +34,14 @@ module WamlToRails
               habtm_table = find_table_definition(habtm_table_name)
 
               if habtm_table.columns.any?
-                base_associations << WamlToRails::Definition::Database::Relationship.new(
+                base_associations << Waml::Definition::Database::Relationship.new(
                   type: 'has_many',
                   source: table_name,
                   destination: habtm_table_name,
                   required: true
                 )
 
-                base_associations << WamlToRails::Definition::Database::Relationship.new(
+                base_associations << Waml::Definition::Database::Relationship.new(
                   type: 'has_many',
                   source: table_name,
                   destination: assoc.destination,
@@ -54,7 +54,7 @@ module WamlToRails
                 base_associations << assoc
               end
             elsif assoc.type == 'parent_children'
-              base_associations << WamlToRails::Definition::Database::Relationship.new(
+              base_associations << Waml::Definition::Database::Relationship.new(
                 type: 'belongs_to',
                 source: table_name,
                 destination: 'parent',
@@ -64,7 +64,7 @@ module WamlToRails
                 }
               )
              
-              base_associations << WamlToRails::Definition::Database::Relationship.new(
+              base_associations << Waml::Definition::Database::Relationship.new(
                 type: 'has_many',
                 source: table_name,
                 destination: 'children',
@@ -89,13 +89,13 @@ module WamlToRails
           table1, table2 = @table_definition.options.habtm_tables
 
           [
-            WamlToRails::Definition::Database::Relationship.new(
+            Waml::Definition::Database::Relationship.new(
               type: 'belongs_to',
               required: true,
               source: table_name,
               destination: table1
             ),
-            WamlToRails::Definition::Database::Relationship.new(
+            Waml::Definition::Database::Relationship.new(
               type: 'belongs_to',
               required: true,
               source: table_name,

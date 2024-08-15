@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Migrations::ActiveStorageDefinition::Presenter do
   describe '#render' do
     it 'returns the rendered content' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -88,7 +88,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::ActiveStorageDefinition::Pres
 
   describe '#file_name' do
     it 'returns the file name' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -112,7 +112,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::ActiveStorageDefinition::Pres
 
   describe '#render?' do
     it 'returns false if none of tables has file column' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -134,7 +134,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::ActiveStorageDefinition::Pres
     end
 
     it 'returns true if at least one table has file column' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',

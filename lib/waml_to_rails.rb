@@ -1,6 +1,6 @@
+require 'waml'
 require 'active_support/all'
 
-require 'waml_to_rails/definition'
 require 'waml_to_rails/utils/format_code'
 
 require 'waml_to_rails/version'
@@ -21,7 +21,7 @@ module WamlToRails
     def generate(waml_json)
       files = ::WamlToRails::RailsBoilerplate::Builder.call
 
-      waml_definition = ::WamlToRails::Definition.new(waml_json.deep_symbolize_keys)
+      waml_definition = ::Waml::Definition.new(waml_json.deep_symbolize_keys)
 
       # Models
       waml_definition.database.schema.each do |table_schema|

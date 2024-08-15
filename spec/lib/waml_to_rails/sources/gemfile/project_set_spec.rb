@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Gemfile::ProjectSet do
   describe '#collection' do
     it 'returns combined set of gems' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

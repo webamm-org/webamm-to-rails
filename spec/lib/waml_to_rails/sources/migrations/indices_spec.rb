@@ -3,15 +3,15 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Migrations::Indices do
   describe '#render' do
     it 'renders indices definitions' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [
-          WamlToRails::Definition::Database::Schema::Index.new(
+          Waml::Definition::Database::Schema::Index.new(
             columns: ['first_name', 'last_name'],
             unique: false,
             name: 'index_users_on_first_name_and_last_name'
           ),
-          WamlToRails::Definition::Database::Schema::Index.new(
+          Waml::Definition::Database::Schema::Index.new(
             columns: ['email'],
             unique: true,
             name: 'index_users_on_email'
@@ -20,7 +20,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Indices do
         columns: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -38,15 +38,15 @@ RSpec.describe WamlToRails::Sources::Migrations::Indices do
     end
 
     it 'renders indices definitions with devise' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [
-          WamlToRails::Definition::Database::Schema::Index.new(
+          Waml::Definition::Database::Schema::Index.new(
             columns: ['first_name', 'last_name'],
             unique: false,
             name: 'index_users_on_first_name_and_last_name'
           ),
-          WamlToRails::Definition::Database::Schema::Index.new(
+          Waml::Definition::Database::Schema::Index.new(
             columns: ['email'],
             unique: true,
             name: 'index_users_on_email'
@@ -55,7 +55,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Indices do
         columns: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

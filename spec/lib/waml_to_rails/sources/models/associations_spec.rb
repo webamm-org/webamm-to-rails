@@ -3,14 +3,14 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Associations do
   describe '#collection' do
     it 'returns collection for parent child association' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'categories',
         columns: [],
         options: {},
         indices: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: {
           engine: 'postgresql',
           schema: [
@@ -43,14 +43,14 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
 
     context 'when processing table that is part of habtm' do
       it 'returns standard collection' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(
+        table_definition = Waml::Definition::Database::Schema.new(
           table: 'companies',
           columns: [],
           options: {},
           indices: []
         )
 
-        waml_definition = WamlToRails::Definition.new(
+        waml_definition = Waml::Definition.new(
           database: {
             engine: 'postgresql',
             schema: [
@@ -85,14 +85,14 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns collection with association to habtm table with columns' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(
+        table_definition = Waml::Definition::Database::Schema.new(
           table: 'companies',
           columns: [],
           options: {},
           indices: []
         )
 
-        waml_definition = WamlToRails::Definition.new(
+        waml_definition = Waml::Definition.new(
           database: {
             engine: 'postgresql',
             schema: [
@@ -137,14 +137,14 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
 
     context 'when processing habtm table associations' do
       it 'returns standard collection' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(
+        table_definition = Waml::Definition::Database::Schema.new(
           table: 'users',
           columns: [],
           options: {},
           indices: []
         )
 
-        waml_definition = WamlToRails::Definition.new(
+        waml_definition = Waml::Definition.new(
           database: {
             engine: 'postgresql',
             schema: [],
@@ -177,7 +177,7 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns habtm collection' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(
+        table_definition = Waml::Definition::Database::Schema.new(
           table: 'companies_tags',
           columns: [],
           options: {
@@ -187,7 +187,7 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
           indices: []
         )
 
-        waml_definition = WamlToRails::Definition.new(
+        waml_definition = Waml::Definition.new(
           database: {
             engine: 'postgresql',
             schema: [],
@@ -204,7 +204,7 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
       end
 
       it 'returns habtm with columns collection' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(
+        table_definition = Waml::Definition::Database::Schema.new(
           table: 'companies_tags',
           columns: [
             {
@@ -221,7 +221,7 @@ RSpec.describe WamlToRails::Sources::Models::Associations do
           indices: []
         )
 
-        waml_definition = WamlToRails::Definition.new(
+        waml_definition = Waml::Definition.new(
           database: {
             engine: 'postgresql',
             schema: [],

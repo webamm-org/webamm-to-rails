@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::EnumDefinition::Presenter do
   describe '#render' do
     it 'returns definition of enum' do
-      column = WamlToRails::Definition::Database::Schema::Column.new(
+      column = Waml::Definition::Database::Schema::Column.new(
         name: 'status',
         type: 'enum_column',
         values: ['accepted', 'rejected'],
@@ -17,7 +17,7 @@ RSpec.describe WamlToRails::Sources::Models::EnumDefinition::Presenter do
     end
 
     it 'returns definition of enum with default value' do
-      column = WamlToRails::Definition::Database::Schema::Column.new(
+      column = Waml::Definition::Database::Schema::Column.new(
         name: 'status',
         type: 'enum_column',
         values: ['accepted', 'rejected'],

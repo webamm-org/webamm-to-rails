@@ -3,13 +3,13 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Concerns do
   describe '#collection' do
     it 'returns nothing if there are no authentications' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: {
           engine: 'postgresql',
           schema: [table_definition],
@@ -24,13 +24,13 @@ RSpec.describe WamlToRails::Sources::Models::Concerns do
     end
 
     it 'returns nothing if online indication is not enabled' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: {
           engine: 'postgresql',
           schema: [table_definition],
@@ -50,13 +50,13 @@ RSpec.describe WamlToRails::Sources::Models::Concerns do
     end
 
     it 'returns definition if online indication is enabled' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: []
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: {
           engine: 'postgresql',
           schema: [table_definition],

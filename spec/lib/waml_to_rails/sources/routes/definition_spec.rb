@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Routes::Definition do
   describe '#render' do
     it 'returns the routes definition' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',

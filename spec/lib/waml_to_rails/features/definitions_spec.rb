@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Features::Definitions do
   describe '#collection' do
     it 'returns empty collection if online_indication is not present' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'moderators',
@@ -23,7 +23,7 @@ RSpec.describe ::WamlToRails::Features::Definitions do
     end
 
     it 'returns features with devise' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'moderators',

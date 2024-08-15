@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Routes::AuthenticationDefinition::Presenter do
   describe '#render' do
     it 'returns nil if authentication is not present' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -18,7 +18,7 @@ RSpec.describe ::WamlToRails::Sources::Routes::AuthenticationDefinition::Present
     end
 
     it 'returns the authentication definition' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::DeviseDefinition::Presenter do
   describe '#render' do
     it 'renders nothing if model is not authenticated' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -24,7 +24,7 @@ RSpec.describe WamlToRails::Sources::Models::DeviseDefinition::Presenter do
     end
 
     it 'returns base devise definition' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -50,7 +50,7 @@ RSpec.describe WamlToRails::Sources::Models::DeviseDefinition::Presenter do
     end
 
     it 'returns base devise definition with allow_sign_up feature' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -76,7 +76,7 @@ RSpec.describe WamlToRails::Sources::Models::DeviseDefinition::Presenter do
     end
 
     it 'returns base devise definition with invitations feature' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -102,7 +102,7 @@ RSpec.describe WamlToRails::Sources::Models::DeviseDefinition::Presenter do
     end
 
     it 'returns base devise definition with two_factor_authentication feature' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

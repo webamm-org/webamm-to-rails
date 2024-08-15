@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Helpers::Devise::Presenter do
   describe '#collection' do
     it 'returns empty collection when authentication is not enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -18,7 +18,7 @@ RSpec.describe ::WamlToRails::Sources::Helpers::Devise::Presenter do
     end
 
     it 'returns empty collection when two_factor_authentication is not enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -38,7 +38,7 @@ RSpec.describe ::WamlToRails::Sources::Helpers::Devise::Presenter do
     end
 
     it 'returns collection when two_factor_authentication is enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',

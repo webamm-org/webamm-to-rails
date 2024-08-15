@@ -4,7 +4,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
   describe '#render' do
     context 'when rendering enum column' do
       it 'returns nil when column type is file' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'avatar',
           type: 'file',
           null: false,
@@ -15,7 +15,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
       end
 
       it 'returns standard enum column definition' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'status',
           type: 'enum_column',
           values: ['active', 'inactive'],
@@ -31,7 +31,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
       end
 
       it 'returns enum column with default option' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'status',
           type: 'enum_column',
           values: ['active', 'inactive'],
@@ -49,7 +49,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
 
     context 'when rendering non enum column' do
       it 'returns standard column definition' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'first_name',
           type: 'string',
           default: nil,
@@ -64,7 +64,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
       end
 
       it 'returns column definition with default option for string' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'first_name',
           type: 'string',
           default: 'test',
@@ -79,7 +79,7 @@ RSpec.describe WamlToRails::Sources::Migrations::ColumnDefinition::Presenter do
       end
 
       it 'returns column definition with default option for integer' do
-        column = WamlToRails::Definition::Database::Schema::Column.new(
+        column = Waml::Definition::Database::Schema::Column.new(
           name: 'age',
           type: 'integer',
           default: '18',

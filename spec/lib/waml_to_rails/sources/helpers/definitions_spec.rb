@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Helpers::Definitions do
   describe '#collection' do
     it 'returns collection with devise' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',

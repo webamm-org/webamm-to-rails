@@ -3,17 +3,17 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Migrations::Definition do
   describe '#render' do
     it 'returns empty class definition' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [
-          WamlToRails::Definition::Database::Schema::Index.new(
+          Waml::Definition::Database::Schema::Index.new(
             columns: ['first_name'],
             unique: false,
             name: 'index_users_on_first_name'
           )
         ],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'first_name',
             type: 'string',
             null: false,
@@ -22,11 +22,11 @@ RSpec.describe WamlToRails::Sources::Migrations::Definition do
         ]
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: {
           schema: [
             table_definition,
-            WamlToRails::Definition::Database::Schema.new(
+            Waml::Definition::Database::Schema.new(
               table: 'companies',
               indices: [],
               columns: [],
@@ -35,7 +35,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Definition do
           ],
           engine: 'postgresql',
           relationships: [
-            WamlToRails::Definition::Database::Relationship.new(
+            Waml::Definition::Database::Relationship.new(
               type: 'belongs_to',
               source: 'users',
               destination: 'companies',

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Views::Devise::Presenter do
   describe '#collection' do
     it 'returns an empty collection when authentication is not enabled' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -18,7 +18,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Devise::Presenter do
     end
 
     it 'returns collection of standard devise views' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -71,7 +71,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Devise::Presenter do
     end
 
     it 'returns collection of standard devise views and invitable' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -127,7 +127,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Devise::Presenter do
     end
 
     it 'returns collection of standard devise views and otp' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

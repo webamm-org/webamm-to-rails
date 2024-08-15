@@ -3,8 +3,8 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Definition do
   describe '#render' do
     it 'returns empty class definition' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      waml_definition = Waml::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
 
       expected_definition = <<~RUBY
         class User < ApplicationRecord
@@ -17,12 +17,12 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     end
 
     it 'returns class definition with concerns' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: []
       )
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         database: { relationships: [], schema: [], engine: 'postgresql' },
         authentication: [
           {
@@ -45,15 +45,15 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     end
 
     it 'returns class definition with attachments' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(name: 'avatar', type: 'file', default: nil, null: false),
-          WamlToRails::Definition::Database::Schema::Column.new(name: 'photos', type: 'file', default: nil, null: false)
+          Waml::Definition::Database::Schema::Column.new(name: 'avatar', type: 'file', default: nil, null: false),
+          Waml::Definition::Database::Schema::Column.new(name: 'photos', type: 'file', default: nil, null: false)
         ]
       )
-      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
+      waml_definition = Waml::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
 
       expected_definition = <<~RUBY
         class User < ApplicationRecord
@@ -68,14 +68,14 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     end
 
     it 'returns class definition with enums' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(name: 'status', type: 'enum_column', values: ['accepted', 'rejected'], default: 'accepted', null: false)
+          Waml::Definition::Database::Schema::Column.new(name: 'status', type: 'enum_column', values: ['accepted', 'rejected'], default: 'accepted', null: false)
         ]
       )
-      waml_definition = WamlToRails::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
+      waml_definition = Waml::Definition.new(database: { relationships: [], schema: [], engine: 'postgresql' })
 
       expected_definition = <<~RUBY
         class User < ApplicationRecord
@@ -89,8 +89,8 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     end
 
     it 'returns class definition with devise' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      waml_definition = WamlToRails::Definition.new(
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -118,8 +118,8 @@ RSpec.describe WamlToRails::Sources::Models::Definition do
     end
 
     it 'returns class definition with base associations' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      waml_definition = WamlToRails::Definition.new(database: {
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      waml_definition = Waml::Definition.new(database: {
         relationships: [
           {
             source: 'users',

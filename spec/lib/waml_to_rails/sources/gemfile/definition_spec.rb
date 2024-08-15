@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Gemfile::Definition do
   describe '#render' do
     it 'renders the gemfile' do
-      waml_definition = waml_definition = WamlToRails::Definition.new(
+      waml_definition = waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

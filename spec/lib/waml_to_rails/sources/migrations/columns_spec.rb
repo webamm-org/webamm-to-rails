@@ -3,17 +3,17 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Migrations::Columns do
   describe '#render' do
     it 'renders columns definitions' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'first_name',
             type: 'string',
             default: nil,
             null: true
           ),
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'last_name',
             type: 'string',
             default: nil,
@@ -22,7 +22,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Columns do
         ]
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -40,23 +40,23 @@ RSpec.describe WamlToRails::Sources::Migrations::Columns do
     end
 
     it 'renders columns definitions with devise' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'first_name',
             type: 'string',
             default: nil,
             null: true
           ),
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'last_name',
             type: 'string',
             default: nil,
             null: true
           ),
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'email',
             type: 'string',
             default: nil,
@@ -65,7 +65,7 @@ RSpec.describe WamlToRails::Sources::Migrations::Columns do
         ]
       )
 
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

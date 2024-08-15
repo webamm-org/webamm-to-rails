@@ -4,7 +4,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
   describe '#collection' do
     context 'habtm association' do
       it 'returns collection for habtm association' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'companies_employees',
           indices: [],
           columns: [],
@@ -14,7 +14,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
           }
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
@@ -38,21 +38,21 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
 
     context 'parent children association' do
       it 'returns collection for parent children association' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'categories',
           indices: [],
           columns: [],
           options: {}
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
             ],
             engine: 'postgresql',
             relationships: [
-              ::WamlToRails::Definition::Database::Relationship.new(
+              ::Waml::Definition::Database::Relationship.new(
                 source: 'categories',
                 required: false,
                 type: 'parent_children'
@@ -74,7 +74,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
       end
 
       it 'returns collection for parent children association with uuid' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'categories',
           indices: [],
           columns: [],
@@ -83,14 +83,14 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
           }
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
             ],
             engine: 'postgresql',
             relationships: [
-              ::WamlToRails::Definition::Database::Relationship.new(
+              ::Waml::Definition::Database::Relationship.new(
                 source: 'categories',
                 required: false,
                 type: 'parent_children'
@@ -114,18 +114,18 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
 
     context 'belongs_to association' do
       it 'returns collection for belongs_to association that is not required' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'employees',
           indices: [],
           columns: [],
           options: {}
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
-              ::WamlToRails::Definition::Database::Schema.new(
+              ::Waml::Definition::Database::Schema.new(
                 table: 'companies',
                 indices: [],
                 columns: [],
@@ -134,7 +134,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
             ],
             engine: 'postgresql',
             relationships: [
-              ::WamlToRails::Definition::Database::Relationship.new(
+              ::Waml::Definition::Database::Relationship.new(
                 source: 'employees',
                 destination: 'companies',
                 required: false,
@@ -157,18 +157,18 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
       end
 
       it 'returns collection for belongs_to association that is required' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'employees',
           indices: [],
           columns: [],
           options: {}
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
-              ::WamlToRails::Definition::Database::Schema.new(
+              ::Waml::Definition::Database::Schema.new(
                 table: 'companies',
                 indices: [],
                 columns: [],
@@ -177,7 +177,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
             ],
             engine: 'postgresql',
             relationships: [
-              ::WamlToRails::Definition::Database::Relationship.new(
+              ::Waml::Definition::Database::Relationship.new(
                 source: 'employees',
                 destination: 'companies',
                 required: true,
@@ -200,18 +200,18 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
       end
 
       it 'returns collection for belongs_to association where destination uses uuid' do
-        table_definition = ::WamlToRails::Definition::Database::Schema.new(
+        table_definition = ::Waml::Definition::Database::Schema.new(
           table: 'employees',
           indices: [],
           columns: [],
           options: {}
         )
 
-        waml_definition = ::WamlToRails::Definition.new(
+        waml_definition = ::Waml::Definition.new(
           database: {
             schema: [
               table_definition,
-              ::WamlToRails::Definition::Database::Schema.new(
+              ::Waml::Definition::Database::Schema.new(
                 table: 'companies',
                 indices: [],
                 columns: [],
@@ -222,7 +222,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Associations do
             ],
             engine: 'postgresql',
             relationships: [
-              ::WamlToRails::Definition::Database::Relationship.new(
+              ::Waml::Definition::Database::Relationship.new(
                 source: 'employees',
                 destination: 'companies',
                 required: false,

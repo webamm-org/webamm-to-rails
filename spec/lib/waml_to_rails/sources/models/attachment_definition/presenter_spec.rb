@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::AttachmentDefinition::Presenter do
   describe '#render' do
     it 'returns attachment definition for single file' do
-      column = WamlToRails::Definition::Database::Schema::Column.new(
+      column = Waml::Definition::Database::Schema::Column.new(
         name: 'avatar', type: 'file', default: nil, null: false
       )
 
@@ -13,7 +13,7 @@ RSpec.describe WamlToRails::Sources::Models::AttachmentDefinition::Presenter do
     end
 
     it 'returns attachment definition for multiple files' do
-      column = WamlToRails::Definition::Database::Schema::Column.new(
+      column = Waml::Definition::Database::Schema::Column.new(
         name: 'photos', type: 'file', default: nil, null: false
       )
 

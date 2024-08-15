@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::PackageJson::Definition do
   describe '#render' do
     it 'returns default json' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'moderators',
@@ -23,7 +23,7 @@ RSpec.describe ::WamlToRails::Sources::PackageJson::Definition do
     end
 
     it 'returns default json with actioncable' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'moderators',

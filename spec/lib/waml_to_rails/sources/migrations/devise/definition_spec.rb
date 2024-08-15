@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
   describe '#columns_collection' do
     it 'returns empty collection when authentication is not enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -18,7 +18,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -39,7 +39,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled and invitations' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -59,7 +59,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled and two factor authentication' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -81,7 +81,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
 
   describe '#indices_collection' do
     it 'returns empty collection when authentication is not enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -96,7 +96,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -117,7 +117,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled and invitations' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -137,7 +137,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::Devise::Definition do
     end
 
     it 'returns default collection when authentication is enabled and two factor authentication' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',

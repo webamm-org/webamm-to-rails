@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Initializers::Definitions do
   describe '#collection' do
     it 'returns a collection of initializers' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -18,7 +18,7 @@ RSpec.describe WamlToRails::Sources::Initializers::Definitions do
     end
 
     it 'returns a collection of initializers with authentication' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

@@ -4,8 +4,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
   describe '#render' do
     context 'when association is belongs_to' do
       it 'returns the association definition when association is optional' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-        association = WamlToRails::Definition::Database::Relationship.new(type: 'belongs_to', required: false, destination: 'companies', source: 'users')
+        table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+        association = Waml::Definition::Database::Relationship.new(type: 'belongs_to', required: false, destination: 'companies', source: 'users')
 
         expect(
           described_class.new(table_definition: table_definition, association: association).render
@@ -13,8 +13,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
       end
 
       it 'returns the association definition when association is required' do
-        table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-        association = WamlToRails::Definition::Database::Relationship.new(type: 'belongs_to', required: true, destination: 'companies', source: 'users')
+        table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+        association = Waml::Definition::Database::Relationship.new(type: 'belongs_to', required: true, destination: 'companies', source: 'users')
 
         expect(
           described_class.new(table_definition: table_definition, association: association).render
@@ -23,8 +23,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
     end
 
     it 'renders has_one association' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      association = WamlToRails::Definition::Database::Relationship.new(type: 'has_one', destination: 'companies', source: 'users', required: true)
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      association = Waml::Definition::Database::Relationship.new(type: 'has_one', destination: 'companies', source: 'users', required: true)
 
       expect(
         described_class.new(table_definition: table_definition, association: association).render
@@ -32,8 +32,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
     end
 
     it 'renders has_many association' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      association = WamlToRails::Definition::Database::Relationship.new(type: 'has_many', destination: 'companies', source: 'users', required: false)
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      association = Waml::Definition::Database::Relationship.new(type: 'has_many', destination: 'companies', source: 'users', required: false)
 
       expect(
         described_class.new(table_definition: table_definition, association: association).render
@@ -41,8 +41,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
     end
 
     it 'renders has_many association with through' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      association = WamlToRails::Definition::Database::Relationship.new(type: 'has_many', destination: 'companies', source: 'users', required: false, options: { through: 'user_companies' })
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      association = Waml::Definition::Database::Relationship.new(type: 'has_many', destination: 'companies', source: 'users', required: false, options: { through: 'user_companies' })
 
       expect(
         described_class.new(table_definition: table_definition, association: association).render
@@ -50,8 +50,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
     end
 
     it 'renders has_many_and_belongs_to_many association' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      association = WamlToRails::Definition::Database::Relationship.new(type: 'has_many_and_belongs_to_many', destination: 'companies', source: 'users', required: false)
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      association = Waml::Definition::Database::Relationship.new(type: 'has_many_and_belongs_to_many', destination: 'companies', source: 'users', required: false)
 
       expect(
         described_class.new(table_definition: table_definition, association: association).render
@@ -59,8 +59,8 @@ RSpec.describe WamlToRails::Sources::Models::AssociationDefinition::Presenter do
     end
 
     it 'raises error when association type is unknown' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
-      association = WamlToRails::Definition::Database::Relationship.new(type: 'unknown', destination: 'companies', source: 'users', required: false)
+      table_definition = Waml::Definition::Database::Schema.new(table: 'users', indices: [], columns: [])
+      association = Waml::Definition::Database::Relationship.new(type: 'unknown', destination: 'companies', source: 'users', required: false)
 
       expect {
         described_class.new(table_definition: table_definition, association: association).render

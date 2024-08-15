@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Migrations::UuidDefinition::Presenter do
   describe '#render' do
     it 'returns the rendered content' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -35,7 +35,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::UuidDefinition::Presenter do
 
   describe '#file_name' do
     it 'returns the file name' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -59,7 +59,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::UuidDefinition::Presenter do
 
   describe '#render?' do
     it 'returns false if none of tables has UUID' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -81,7 +81,7 @@ RSpec.describe ::WamlToRails::Sources::Migrations::UuidDefinition::Presenter do
     end
 
     it 'returns true if at least one table has UUID' do
-      waml_definition = ::WamlToRails::Definition.new(
+      waml_definition = ::Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',

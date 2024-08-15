@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Migrations::TableDefinition::Presenter do
   describe '#render' do
     it 'renders the table definition' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'plans', indices: [], columns: [],
       )
 
@@ -13,7 +13,7 @@ RSpec.describe WamlToRails::Sources::Migrations::TableDefinition::Presenter do
     end
 
     it 'renders the table definition with id: :uuid' do
-      table_definition = WamlToRails::Definition::Database::Schema.new(
+      table_definition = Waml::Definition::Database::Schema.new(
         table: 'plans', indices: [], columns: [], options: { use_uuid: true }
       )
 

@@ -3,14 +3,14 @@ require 'spec_helper'
 RSpec.describe WamlToRails::Sources::Models::Enums do
   describe '#collection' do
     it 'returns collection of enum definitions' do
-      schema = WamlToRails::Definition::Database::Schema.new(
+      schema = Waml::Definition::Database::Schema.new(
         table: 'users',
         indices: [],
         columns: [
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'status', type: 'enum_column', values: ['accepted', 'rejected'], default: nil, null: false
           ),
-          WamlToRails::Definition::Database::Schema::Column.new(
+          Waml::Definition::Database::Schema::Column.new(
             name: 'role', type: 'enum_column', values: ['admin', 'user'], default: 'user', null: false
           )
         ]

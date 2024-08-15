@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Initializers::DeviseDefinition::Presenter do
   describe '#render' do
     it 'returns base devise initializer' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [],
         database: {
           engine: 'postgresql',
@@ -20,7 +20,7 @@ RSpec.describe ::WamlToRails::Sources::Initializers::DeviseDefinition::Presenter
     end
 
     it 'renders devise initializer with two factor authentication' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -42,7 +42,7 @@ RSpec.describe ::WamlToRails::Sources::Initializers::DeviseDefinition::Presenter
     end
 
     it 'renders devise initializer with invitable' do
-      waml_definition = WamlToRails::Definition.new(
+      waml_definition = Waml::Definition.new(
         authentication: [
           {
             table: 'users',

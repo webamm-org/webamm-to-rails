@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
   describe '#collection' do
     it 'returns empty collection if waml has no authentication' do
-      waml = ::WamlToRails::Definition.new(
+      waml = ::Waml::Definition.new(
         database: {
           engine: 'postgresql',
           schema: [],
@@ -17,7 +17,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
     end
 
     it 'returns base collection if waml has authentication' do
-      waml = ::WamlToRails::Definition.new(
+      waml = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users'
@@ -44,7 +44,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
     end
 
     it 'returns base collection invitable lib if invitations are enabled' do
-      waml = ::WamlToRails::Definition.new(
+      waml = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -79,7 +79,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
     end
 
     it 'returns base collection otp lib if otp is enabled' do
-      waml = ::WamlToRails::Definition.new(
+      waml = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
@@ -121,7 +121,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Sets::Authentication do
     end
 
     it 'returns base collection with multiple libs' do
-      waml = ::WamlToRails::Definition.new(
+      waml = ::Waml::Definition.new(
         authentication: [
           {
             table: 'users',
