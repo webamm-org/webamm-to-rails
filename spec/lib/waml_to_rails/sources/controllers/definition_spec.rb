@@ -5,12 +5,7 @@ RSpec.describe WamlToRails::Sources::Controllers::Definition do
     it 'returns empty class definition' do
       crud_definition = Waml::Definition::Database::Crud.new(
         table: 'users',
-        actions: [
-          {
-            name: 'index',
-            options: {}
-          }
-        ]
+        actions: []
       )
 
       waml_definition = Waml::Definition.new(
@@ -99,6 +94,10 @@ RSpec.describe WamlToRails::Sources::Controllers::Definition do
 
       expected_definition = <<~RUBY
         class UsersController < ApplicationController
+          def index
+            @users = User.all
+          end
+
           def new
             @user = User.new
           end

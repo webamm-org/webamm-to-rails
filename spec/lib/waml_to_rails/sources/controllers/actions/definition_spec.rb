@@ -72,7 +72,7 @@ RSpec.describe WamlToRails::Sources::Controllers::Actions::Definition do
       ).collection
 
       expect(collection[:private].size).to eq(1)
-      expect(collection[:public].size).to eq(6)
+      expect(collection[:public].size).to eq(7)
     end
   end
 end

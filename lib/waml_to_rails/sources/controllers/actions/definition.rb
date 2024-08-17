@@ -4,6 +4,7 @@ require_relative 'show_definition/presenter'
 require_relative 'destroy_definition/presenter'
 require_relative 'create_definition/presenter'
 require_relative 'update_definition/presenter'
+require_relative 'index_definition/presenter'
 require_relative 'strong_parameters_definition/presenter'
 
 module WamlToRails
@@ -24,6 +25,10 @@ module WamlToRails
 
           def actions
             [
+              ::WamlToRails::Sources::Controllers::Actions::IndexDefinition::Presenter.new(
+                table_name: @crud_definition.table,
+                crud_definition: @crud_definition
+              ),
               ::WamlToRails::Sources::Controllers::Actions::NewDefinition::Presenter.new(
                 table_name: @crud_definition.table,
                 crud_definition: @crud_definition
