@@ -4,6 +4,7 @@ require_relative 'show_definition/presenter'
 require_relative 'destroy_definition/presenter'
 require_relative 'create_definition/presenter'
 require_relative 'update_definition/presenter'
+require_relative 'strong_parameters_definition/presenter'
 
 module WamlToRails
   module Sources
