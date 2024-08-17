@@ -19,6 +19,10 @@ module WamlToRails
 
             def access_scope = :public
 
+            def render?
+              @crud_definition.actions.find { |action| action.name == 'destroy' }.present?
+            end
+
             private
 
             def variable_name

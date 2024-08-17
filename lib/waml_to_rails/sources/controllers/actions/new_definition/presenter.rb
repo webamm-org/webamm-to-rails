@@ -4,8 +4,9 @@ module WamlToRails
       module Actions
         module NewDefinition
           class Presenter
-            def initialize(table_name:)
+            def initialize(table_name:, crud_definition:)
               @table_name = table_name
+              @crud_definition = crud_definition
             end
 
             def render
@@ -17,6 +18,10 @@ module WamlToRails
             end
 
             def access_scope = :public
+
+            def render?
+              @crud_definition.actions.find { |action| action.name == 'create' }.present?
+            end
 
             private
 
