@@ -29,16 +29,15 @@ RSpec.describe WamlToRails::Sources::Routes::ResourceDefinition::Presenter do
         actions: [
           { name: 'index', options: {} },
           { name: 'show', options: {} },
-          { name: 'new', options: {} },
           { name: 'create', options: {} },
-          { name: 'edit', options: {} }
+          { name: 'update', options: {} }
         ]
       )
 
       expect(
         described_class.new(crud_definition: crud_definition).render
       ).to eq(
-        'resources :users, only: %i[index show new create edit]'
+        'resources :users, only: %i[index show create update edit new]'
       )
     end
   end
