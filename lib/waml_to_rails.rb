@@ -39,7 +39,7 @@ module WamlToRails
       # Controllers
       waml_definition.database.crud.each do |crud_definition|
         controller_code = ::WamlToRails::Sources::Controllers::Definition.new(
-          crud_definition: crud_definition
+          crud_definition: crud_definition, waml_definition: waml_definition
         ).render
 
         files << {

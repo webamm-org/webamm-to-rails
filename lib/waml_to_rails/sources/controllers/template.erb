@@ -1,2 +1,13 @@
 <%= class_definition %>
+  <% actions.fetch(:public, []).each do |action_def| %>
+    <%= action_def.render %>
+  <% end %>
+
+  <% if actions.fetch(:private, []).any? %>
+    private
+
+    <% actions.fetch(:private, []).each do |action_def| %>
+      <%= action_def.render %>
+    <% end %>
+  <% end %>
 end
