@@ -13,6 +13,7 @@ require 'waml_to_rails/sources/views/definition'
 require 'waml_to_rails/sources/helpers/definitions'
 require 'waml_to_rails/sources/package_json/definition'
 require 'waml_to_rails/features/definitions'
+require 'waml_to_rails/sources/controllers/definition'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
