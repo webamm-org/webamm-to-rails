@@ -2,5 +2,5 @@ def destroy
   <%= variable_name %> = <%= find_call %>
   <%= variable_name %>.destroy!
 
-  redirect_to <%= redirection_path %>
+  redirect_to <%= redirection_path %>, notice: '<%= resource_name %> was successfully destroyed.'
 end

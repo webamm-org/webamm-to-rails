@@ -40,6 +40,10 @@ module WamlToRails
                 "root_path"
               end
             end
+
+            def resource_name
+              @table_name.classify
+            end
           end
         end
       end

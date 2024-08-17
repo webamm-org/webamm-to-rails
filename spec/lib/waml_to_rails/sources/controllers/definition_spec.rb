@@ -114,7 +114,7 @@ RSpec.describe WamlToRails::Sources::Controllers::Definition do
             @user = User.find(params[:id])
             @user.destroy!
 
-            redirect_to users_path
+            redirect_to users_path, notice: "User was successfully destroyed."
           end
 
           def create

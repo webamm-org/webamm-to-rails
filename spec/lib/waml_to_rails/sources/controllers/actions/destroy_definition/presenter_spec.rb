@@ -64,7 +64,7 @@ RSpec.describe ::WamlToRails::Sources::Controllers::Actions::DestroyDefinition::
           @user = User.find(params[:id])
           @user.destroy!
 
-          redirect_to users_path
+          redirect_to users_path, notice: "User was successfully destroyed."
         end
       RUBY
 
@@ -89,7 +89,7 @@ RSpec.describe ::WamlToRails::Sources::Controllers::Actions::DestroyDefinition::
           @user = User.find(params[:id])
           @user.destroy!
 
-          redirect_to root_path
+          redirect_to root_path, notice: "User was successfully destroyed."
         end
       RUBY
 
