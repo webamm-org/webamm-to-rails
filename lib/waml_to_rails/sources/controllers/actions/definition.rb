@@ -1,4 +1,5 @@
 require_relative 'new_definition/presenter'
+require_relative 'edit_definition/presenter'
 
 module WamlToRails
   module Sources
