@@ -1,0 +1,9 @@
+def create
+  <%= variable_name %> = <%= new_call %>
+
+  if <%= variable_name %>.save
+    redirect_to <%= redirection_path %>
+  else
+    render :new, status: :unprocessable_entity
+  end
+end

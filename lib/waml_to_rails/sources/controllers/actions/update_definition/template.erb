@@ -1,0 +1,9 @@
+def update
+  <%= variable_name %> = <%= find_call %>
+
+  if <%= update_call %>
+    redirect_to <%= redirection_path %>
+  else
+    render :edit, status: :unprocessable_entity
+  end
+end
