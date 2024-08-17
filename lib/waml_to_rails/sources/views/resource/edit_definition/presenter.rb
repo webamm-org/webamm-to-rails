@@ -26,6 +26,10 @@ module WamlToRails
 
             private
 
+            def resource_name
+              @crud_definition.table
+            end
+
             def single_record_name
               @crud_definition.table.singularize
             end
