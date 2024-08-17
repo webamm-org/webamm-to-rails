@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   <%= authentication_definition if authentication_definition.present? %>
+  <% resources.each do |resource| %>
+    <%= resource %>
+  <% end %>
 end

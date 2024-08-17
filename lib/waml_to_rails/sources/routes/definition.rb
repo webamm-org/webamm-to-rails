@@ -1,4 +1,5 @@
 require_relative 'authentication_definition/presenter'
+require_relative 'resource_definition/presenter'
 
 module WamlToRails
   module Sources
@@ -22,6 +23,14 @@ module WamlToRails
           ::WamlToRails::Sources::Routes::AuthenticationDefinition::Presenter.new(
             waml_definition: @waml_definition
           ).render
+        end
+
+        def resources
+          @waml_definition.database.crud.map do |resource|
+            ::WamlToRails::Sources::Routes::ResourceDefinition::Presenter.new(
+              crud_definition: resource
+            ).render
+          end
         end
       end
     end

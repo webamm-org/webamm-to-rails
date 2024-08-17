@@ -13,7 +13,22 @@ RSpec.describe ::WamlToRails::Sources::Routes::Definition do
         database: {
           engine: 'postgresql',
           schema: [],
-          relationships: []
+          relationships: [],
+          crud: [
+            {
+              table: 'users',
+              actions: [
+                {
+                  name: 'index',
+                  options: {}
+                },
+                {
+                  name: 'show',
+                  options: {}
+                }
+              ]
+            }
+          ]
         }
       )
 
@@ -28,6 +43,8 @@ RSpec.describe ::WamlToRails::Sources::Routes::Definition do
           get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
           devise_for :users
+
+          resources :users, only: %i[index show]
         end
       RUBY
 
