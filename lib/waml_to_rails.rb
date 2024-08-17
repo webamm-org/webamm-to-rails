@@ -2,6 +2,7 @@ require 'waml'
 require 'active_support/all'
 
 require 'waml_to_rails/utils/format_code'
+require 'waml_to_rails/utils/format_template'
 
 require 'waml_to_rails/version'
 require 'waml_to_rails/sources/models/definition'

@@ -1,4 +1,5 @@
 require_relative 'devise/presenter'
+require_relative 'resource/presenter'
 
 module WamlToRails
   module Sources
@@ -11,6 +12,11 @@ module WamlToRails
         def collection
           views = []
           views |= ::WamlToRails::Sources::Views::Devise::Presenter.new(waml_definition: @waml_definition).collection
+
+          @waml_definition.database.crud.each do |crud_definition|
+            views |= ::WamlToRails::Sources::Views::Resource::Presenter.new(waml_definition: crud_definition).collection
+          end
+
           views
         end
       end
