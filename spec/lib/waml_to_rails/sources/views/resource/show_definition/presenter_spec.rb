@@ -51,7 +51,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Resource::ShowDefinition::Presente
             options: {}
           },
           {
-            name: 'edit',
+            name: 'update',
             options: {}
           },
           {
@@ -79,7 +79,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Resource::ShowDefinition::Presente
             }
           },
           {
-            name: 'edit',
+            name: 'update',
             options: {}
           },
           {
@@ -107,7 +107,7 @@ RSpec.describe ::WamlToRails::Sources::Views::Resource::ShowDefinition::Presente
             }
           },
           {
-            name: 'edit',
+            name: 'update',
             options: {}
           },
           {
