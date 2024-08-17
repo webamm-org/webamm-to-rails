@@ -2,7 +2,65 @@ require 'spec_helper'
 
 RSpec.describe WamlToRails::Sources::Views::Definition do
   describe '#collection' do
-    it 'returns collection of views with devise' do
+  it 'returns collection of views with resources' do
+    crud_definition = ::Waml::Definition::Database::Crud.new(
+      table: 'users',
+      actions: [
+        {
+          name: 'index',
+          options: {}
+        },
+        {
+          name: 'show',
+          options: {}
+        },
+        {
+          name: 'create',
+          options: {}
+        }
+      ]
+    )
+
+    waml_definition = ::Waml::Definition.new(
+      authentication: [],
+      database: {
+        engine: 'postgresql',
+        relationships: [],
+        crud: [crud_definition],
+        schema: [
+          {
+            table: 'users',
+            indices: [],
+            columns: [
+              {
+                name: 'first_name',
+                type: 'string',
+                null: false,
+                default: nil
+              }
+            ]
+          }
+        ]
+      }
+    )
+
+    views = described_class.new(waml_definition: waml_definition).collection
+
+    expected_views = [
+      'app/views/users/index.html.erb',
+      'app/views/users/new.html.erb',
+      'app/views/users/show.html.erb',
+      'app/views/users/_form.html.erb'
+    ]
+
+    expect(views.size).to eq(expected_views.size)
+
+    expected_views.each do |path|
+      expect(views.map { |v| v[:path] }).to include(path)
+    end
+  end
+
+  it 'returns collection of views with devise' do
       waml_definition = Waml::Definition.new(
         authentication: [
           {
