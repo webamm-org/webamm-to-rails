@@ -19,7 +19,7 @@ RSpec.describe WamlToRails::Sources::Gemfile::ProjectSet do
 
       gems = described_class.new(waml_definition: waml_definition).collection
 
-      expect(gems.size).to eq(18)
+      expect(gems.size).to eq(19)
     end
   end
 end

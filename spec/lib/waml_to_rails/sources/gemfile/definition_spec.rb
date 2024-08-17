@@ -37,6 +37,7 @@ RSpec.describe ::WamlToRails::Sources::Gemfile::Definition do
 
         group :development do
           gem "web-console", require: false
+          gem "letter_opener_web", "~> 3.0", require: false
         end
 
         group :development, :test do

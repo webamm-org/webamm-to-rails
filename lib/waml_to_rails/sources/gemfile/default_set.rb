@@ -19,6 +19,7 @@ module WamlToRails
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "brakeman", version: nil, required: false, group: %i[development test], platforms: []),
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "rubocop-rails-omakase", version: nil, required: false, group: %i[development test], platforms: []),
           ::WamlToRails::Sources::Gemfile::Gem.new(name: "web-console", version: nil, required: false, group: :development, platforms: []),
+          ::WamlToRails::Sources::Gemfile::Gem.new(name: "letter_opener_web", version: '~> 3.0', required: false, group: :development, platforms: [])
         ]
       end
     end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe WamlToRails::Sources::Gemfile::DefaultSet do
   it 'returns default set of gems' do
-    expect(described_class::GEMS.size).to eq(16)
+    expect(described_class::GEMS.size).to eq(17)
 
     rails_gem = described_class::GEMS.find { |gem| gem.name == 'rails' }
 

@@ -19,6 +19,8 @@ RSpec.describe ::WamlToRails::Sources::Routes::Definition do
 
       expected_definition = <<~RUBY
         Rails.application.routes.draw do
+          mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
           get "up" => "rails/health#show", as: :rails_health_check
 
           # Render dynamic PWA files from app/views/pwa/*
