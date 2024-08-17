@@ -36,6 +36,18 @@ module WamlToRails
         }
       end
 
+      # Controllers
+      waml_definition.database.crud.each do |crud_definition|
+        controller_code = ::WamlToRails::Sources::Controllers::Definition.new(
+          crud_definition: crud_definition
+        ).render
+
+        files << {
+          path: "app/controllers/#{crud_definition.table.pluralize}_controller.rb",
+          content: controller_code
+        }
+      end
+
       # package.json
       files << {
         path: 'package.json',
