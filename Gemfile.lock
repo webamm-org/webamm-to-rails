@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    waml_to_rails (0.1.0)
+    waml_to_rails (0.1.1)
       activesupport (= 7.2)
       dry-struct (= 1.6.0)
       rufo (= 0.18.0)
-      waml (= 0.0.1)
+      waml (= 0.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -79,7 +79,7 @@ GEM
 GEM
   remote: https://rubygems.pkg.github.com/rubypowerhouse/
   specs:
-    waml (0.0.1)
+    waml (0.0.2)
       dry-struct (= 1.6.0)
 
 PLATFORMS
@@ -88,7 +88,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   rspec
-  waml (= 0.0.1)!
+  waml (= 0.0.2)!
   waml_to_rails!
 
 BUNDLED WITH

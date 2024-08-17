@@ -7,5 +7,5 @@ gemspec
 gem 'pry'
 
 source 'https://rubygems.pkg.github.com/rubypowerhouse' do
-  gem 'waml', '0.0.1'
+  gem 'waml', '0.0.2'
 end

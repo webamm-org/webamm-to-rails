@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activesupport', '7.2'
   spec.add_runtime_dependency 'rufo', '0.18.0'
   spec.add_runtime_dependency 'dry-struct', '1.6.0'
-  spec.add_runtime_dependency 'waml', '0.0.1'
+  spec.add_runtime_dependency 'waml', '0.0.2'
 
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'pry'
