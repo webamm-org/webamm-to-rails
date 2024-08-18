@@ -1,5 +1,6 @@
 require_relative 'class_definition/presenter'
 require_relative 'actions/definition'
+require_relative 'filters/definition'
 
 module WamlToRails
   module Sources
@@ -26,6 +27,13 @@ module WamlToRails
 
         def actions
           ::WamlToRails::Sources::Controllers::Actions::Definition.new(
+            crud_definition: @crud_definition,
+            waml_definition: @waml_definition
+          ).collection
+        end
+
+        def filters
+          ::WamlToRails::Sources::Controllers::Filters::Definition.new(
             crud_definition: @crud_definition,
             waml_definition: @waml_definition
           ).collection
