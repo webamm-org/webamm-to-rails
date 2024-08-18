@@ -1,5 +1,6 @@
 require_relative 'class_definition/presenter'
 require_relative 'actions/definition'
+require_relative 'authentication/devise_groups/presenter'
 
 module WamlToRails
   module Sources
