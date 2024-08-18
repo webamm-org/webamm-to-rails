@@ -21,7 +21,7 @@ module WamlToRails
           private
 
           def devise_groups
-            devise_mappings = ::WamlToRails::Sources::Controllers::Authentication::DeviseGroups::Presenter.new(
+            devise_mappings = ::WamlToRails::Sources::Controllers::ApplicationController::Authentication::DeviseGroups::Presenter.new(
               waml_definition: @waml_definition
             ).mappings
 

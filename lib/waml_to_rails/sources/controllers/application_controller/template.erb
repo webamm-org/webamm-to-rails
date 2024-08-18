@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  <% devise_groups.each do |devise_group| %>
+    <%= devise_group -%>
+  <% end %>
 end
