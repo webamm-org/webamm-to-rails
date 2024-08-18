@@ -36,10 +36,6 @@ module WamlToRails
             content: File.read(File.expand_path('templates/app/channels/application_cable/connection.rb.erb', __dir__))
           },
           {
-            path: 'app/controllers/application_controller.rb',
-            content: File.read(File.expand_path('templates/app/controllers/application_controller.rb.erb', __dir__))
-          },
-          {
             path: 'app/controllers/concerns/.keep',
             content: ''
           },
