@@ -1,4 +1,8 @@
 <%= class_definition %>
+  <% filters.each do |filter| %>
+    <%= filter -%>
+  <% end %>
+
   <% actions.fetch(:public, []).each do |action_def| %>
     <%= action_def.render %>
   <% end %>
