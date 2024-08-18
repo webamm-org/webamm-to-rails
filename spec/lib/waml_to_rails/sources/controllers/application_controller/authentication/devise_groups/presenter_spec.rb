@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe WamlToRails::Sources::Controllers::Authentication::DeviseGroups::Presenter do
+RSpec.describe WamlToRails::Sources::Controllers::ApplicationController::Authentication::DeviseGroups::Presenter do
   describe '#mappings' do
     it 'returns devise mappings' do
       waml_definition = Waml::Definition.new(
