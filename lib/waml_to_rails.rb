@@ -15,6 +15,7 @@ require 'waml_to_rails/sources/helpers/definitions'
 require 'waml_to_rails/sources/package_json/definition'
 require 'waml_to_rails/features/definitions'
 require 'waml_to_rails/sources/controllers/definition'
+require 'waml_to_rails/sources/controllers/application_controller/definition'
 
 require 'waml_to_rails/rails_boilerplate/builder'
 
@@ -48,6 +49,13 @@ module WamlToRails
           content: controller_code
         }
       end
+
+      files << {
+        path: 'app/controllers/application_controller.rb',
+        content: ::WamlToRails::Sources::Controllers::ApplicationController::Definition.new(
+          waml_definition: waml_definition
+        ).render
+      }
 
       # package.json
       files << {
