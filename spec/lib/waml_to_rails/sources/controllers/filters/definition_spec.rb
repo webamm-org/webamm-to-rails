@@ -67,8 +67,8 @@ RSpec.describe ::WamlToRails::Sources::Controllers::Filters::Definition do
       ).to eq([
         'before_action :authenticate_group1!, only: [:index]',
         'before_action :authenticate_group2!, only: [:show]',
-        'before_action :authenticate_group3!, only: [:create]',
-        'before_action :authenticate_user!, only: [:update, :destroy]'
+        'before_action :authenticate_group3!, only: [:create, :new]',
+        'before_action :authenticate_user!, only: [:update, :edit, :destroy]'
       ])
     end
   end

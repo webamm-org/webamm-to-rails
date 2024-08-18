@@ -20,6 +20,14 @@ module WamlToRails
 
                 action_mappings[action.options.authentication] ||= []
                 action_mappings[action.options.authentication] << action.name
+
+                if action.name == 'create'
+                  action_mappings[action.options.authentication] << 'new'
+                end
+
+                if action.name == 'update'
+                  action_mappings[action.options.authentication] << 'edit'
+                end
               end
 
               action_mappings.each_pair do |group, actions|

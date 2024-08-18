@@ -228,7 +228,7 @@ RSpec.describe WamlToRails::Sources::Controllers::Definition do
       expected_definition = <<~RUBY
         class UsersController < ApplicationController
           before_action :authenticate_user!, only: [:index, :show]
-          before_action :authenticate_admin!, only: [:create, :update]
+          before_action :authenticate_admin!, only: [:create, :new, :update, :edit]
           before_action :authenticate_group1!, only: [:destroy]
 
           def index
