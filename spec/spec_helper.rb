@@ -1,2 +1,2 @@
 require 'rspec'
-require 'waml_to_rails'
+require 'webamm_to_rails'

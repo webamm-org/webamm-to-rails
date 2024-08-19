@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    waml_to_rails (0.1.2)
+    webamm_to_rails (7.0.0)
       activesupport (= 7.2)
       dry-struct (= 1.6.0)
       htmlbeautifier (= 1.4.3)
       rufo (= 0.18.0)
-      waml (= 0.0.2)
+      webamm (= 0.0.1)
 
 GEM
   remote: https://rubygems.org/
@@ -25,7 +25,7 @@ GEM
     base64 (0.2.0)
     bigdecimal (3.1.8)
     coderay (1.1.3)
-    concurrent-ruby (1.3.3)
+    concurrent-ruby (1.3.4)
     connection_pool (2.4.1)
     diff-lcs (1.5.1)
     drb (2.2.1)
@@ -55,7 +55,7 @@ GEM
     ice_nine (0.11.2)
     logger (1.6.0)
     method_source (1.1.0)
-    minitest (5.24.1)
+    minitest (5.25.1)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -76,13 +76,9 @@ GEM
     securerandom (0.3.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    zeitwerk (2.6.17)
-
-GEM
-  remote: https://rubygems.pkg.github.com/rubypowerhouse/
-  specs:
-    waml (0.0.2)
+    webamm (0.0.1)
       dry-struct (= 1.6.0)
+    zeitwerk (2.6.17)
 
 PLATFORMS
   x86_64-darwin-21
@@ -90,8 +86,7 @@ PLATFORMS
 DEPENDENCIES
   pry
   rspec
-  waml (= 0.0.2)!
-  waml_to_rails!
+  webamm_to_rails!
 
 BUNDLED WITH
    2.4.22
